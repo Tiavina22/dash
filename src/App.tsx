@@ -154,8 +154,8 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-4 sm:p-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-4 sm:p-8 flex-col">
+      <div className="flex-grow max-w-4xl mx-auto">
         <div className="flex flex-col items-center mb-8">
           <div className="flex items-center mb-4">
             <Github className="w-8 h-8 mr-2" />
@@ -309,6 +309,9 @@ function App() {
           </div>
         )}
       </div>
+      <footer className="mt-8 text-center text-gray-400">
+        <p>&copy; {new Date().getFullYear()} Dash. Tiavina22.</p>
+      </footer>
     </div>
   );
 }
