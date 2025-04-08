@@ -87,8 +87,8 @@ function App() {
         query($username: String!) {
           user(login: $username) {
             contributionsCollection(from: "${new Date(
-              Date.now() - 365 * 24 * 60 * 60 * 1000
-            ).toISOString()}", to: "${new Date().toISOString()}") {
+        Date.now() - 365 * 24 * 60 * 60 * 1000
+      ).toISOString()}", to: "${new Date().toISOString()}") {
               totalCommitContributions
               restrictedContributionsCount
             }
@@ -186,7 +186,18 @@ function App() {
         <div className="flex flex-col items-center mb-8">
           <div className="flex items-center mb-4">
             <Github className="w-8 h-8 mr-2" />
-            <h1 className="text-3xl font-bold">GitHub Stats Generator</h1>
+            <h1 className="text-3xl font-bold">Dash</h1>
+          </div>
+
+          <div className="text-center mb-8 max-w-2xl">
+            <p className="text-xl text-gray-300 mb-4">
+              Visualisez vos statistiques GitHub en un coup d'œil
+            </p>
+            <p className="text-gray-400">
+              Entrez votre nom d'utilisateur GitHub pour découvrir vos contributions,
+              langages de programmation favoris, et bien plus encore.
+              Générez une belle carte de statistiques à partager !
+            </p>
           </div>
 
           <div className="w-full max-w-md flex gap-2">
