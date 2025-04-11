@@ -52,20 +52,27 @@ export const useGithub = () => {
     );
 
     // Calculer le streak actuel
+    let lastDay: Date | null = null;
     for (let i = 0; i < sortedDays.length; i++) {
       const day = new Date(sortedDays[i].date);
       day.setHours(0, 0, 0, 0);
       
       if (sortedDays[i].contributionCount > 0) {
-        if (i === 0) {
-          currentStreak = 1;
+        if (lastDay === null) {
+          // Premier jour avec des contributions
+          const diffDays = Math.floor((today.getTime() - day.getTime()) / (1000 * 60 * 60 * 24));
+          if (diffDays <= 1) {
+            currentStreak = 1;
+            lastDay = day;
+          } else {
+            break;
+          }
         } else {
-          const prevDay = new Date(sortedDays[i - 1].date);
-          prevDay.setHours(0, 0, 0, 0);
-          const diffDays = Math.floor((day.getTime() - prevDay.getTime()) / (1000 * 60 * 60 * 24));
-          
+          // Vérifier si c'est le jour suivant
+          const diffDays = Math.floor((lastDay.getTime() - day.getTime()) / (1000 * 60 * 60 * 24));
           if (diffDays === 1) {
             currentStreak++;
+            lastDay = day;
           } else {
             break;
           }
