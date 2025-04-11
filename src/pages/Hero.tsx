@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTheme } from '../components/ThemeProvider';
+import { Share2, Check } from 'lucide-react';
 
 const developers = [
   { username: 'tsirysndr', name: 'Tsiry Sandratraina' },
@@ -41,9 +42,32 @@ const developers = [
 export const Hero: React.FC = () => {
   const navigate = useNavigate();
   const { theme } = useTheme();
+  const [copiedUsername, setCopiedUsername] = useState<string | null>(null);
 
   const handleProfileClick = (username: string) => {
     navigate(`/dashboard?username=${username}`, { state: { fromHero: true } });
+  };
+
+  const handleShare = async (username: string, e: React.MouseEvent) => {
+    e.stopPropagation(); // Empêche la navigation vers le dashboard
+    const shareUrl = `${window.location.origin}/dashboard?username=${username}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `Profil GitHub de ${username}`,
+          text: `Découvrez les statistiques GitHub de ${username}`,
+          url: shareUrl,
+        });
+      } catch (error) {
+        console.error('Erreur lors du partage:', error);
+      }
+    } else {
+      // Fallback pour les navigateurs qui ne supportent pas l'API Share
+      navigator.clipboard.writeText(shareUrl);
+      setCopiedUsername(username);
+      setTimeout(() => setCopiedUsername(null), 2000);
+    }
   };
 
   return (
@@ -101,21 +125,40 @@ export const Hero: React.FC = () => {
                   <p className={`mb-4 ${
                     theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
                   }`}>@{dev.username}</p>
-                  <div className="flex items-center gap-2 text-blue-400">
-                    <span>Voir le profil</span>
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                  <div className="flex items-center justify-center gap-4">
+                    <div className="flex items-center gap-2 text-blue-400">
+                      <span>Voir le profil</span>
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
+                    <button
+                      onClick={(e) => handleShare(dev.username, e)}
+                      className={`p-2 rounded-full ${
+                        theme === 'dark' 
+                          ? 'hover:bg-gray-700' 
+                          : 'hover:bg-gray-100'
+                      } transition-colors duration-200`}
+                      title="Partager le profil"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+                      {copiedUsername === dev.username ? (
+                        <Check className="w-5 h-5 text-green-500" />
+                      ) : (
+                        <Share2 className={`w-5 h-5 ${
+                          theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+                        }`} />
+                      )}
+                    </button>
                   </div>
                 </div>
               </div>

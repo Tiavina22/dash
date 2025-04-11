@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Search } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 interface SearchBarProps {
   username: string;
@@ -18,14 +18,22 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   error,
 }) => {
   const location = useLocation();
+  const [searchParams] = useSearchParams();
   const initialRender = useRef(true);
 
   useEffect(() => {
-    // Si on vient de la page Hero (avec un username dans l'URL)
-    if (username && location.state?.fromHero) {
-      onSearch();
+    const urlUsername = searchParams.get('username');
+    if (urlUsername) {
+      setUsername(urlUsername);
     }
-  }, [username, location.state?.fromHero]);
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (username && initialRender.current) {
+      onSearch();
+      initialRender.current = false;
+    }
+  }, [username]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
