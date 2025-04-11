@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Github, Linkedin } from 'lucide-react';
+import { Github, Linkedin, Heart } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -64,6 +64,20 @@ export const Footer: React.FC = () => {
                   >
                     <Linkedin className="w-6 h-6" />
                   </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Heart className="w-4 h-4 text-red-500" />
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    Supportez-moi sur{' '}
+                    <a
+                      href="https://www.paypal.com/donate/?hosted_button_id=tiavinaramilison22@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+                    >
+                      PayPal
+                    </a>
+                  </span>
                 </div>
               </div>
             </div>
