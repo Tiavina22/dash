@@ -180,7 +180,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                             cx="50%"
                             cy="50%"
                             outerRadius={80}
-                            label={({ name, percentage }) => `${name} (${percentage}%)`}
+                            label={false}
                             labelLine={false}
                           >
                             {languagesWithPercentage.map((_, index) => (
@@ -205,14 +205,16 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                             layout="vertical" 
                             align="right" 
                             verticalAlign="middle"
-                            formatter={(value: string) => (
-                              <span className="text-sm text-gray-700 dark:text-gray-300">{value}</span>
+                            formatter={(value: string, entry: any) => (
+                              <span className="text-sm text-gray-700 dark:text-gray-300">
+                                {value} ({entry.payload.percentage}%)
+                              </span>
                             )}
                           />
                         </PieChart>
                       </ResponsiveContainer>
                     </div>
-                    <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <div className="mt-4 hidden sm:grid grid-cols-2 sm:grid-cols-3 gap-2">
                       {languagesWithPercentage.map((lang, index) => (
                         <div 
                           key={lang.name} 
