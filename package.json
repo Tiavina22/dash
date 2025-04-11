@@ -11,15 +11,19 @@
   },
   "dependencies": {
     "@octokit/graphql": "^7.0.2",
+    "@react-three/drei": "^9.97.0",
+    "@react-three/fiber": "^8.15.16",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.7",
+    "framer-motion": "^12.6.5",
     "html2canvas": "^1.4.1",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-github-calendar": "^4.5.6",
     "react-router-dom": "^7.5.0",
-    "recharts": "^2.12.2"
+    "recharts": "^2.12.2",
+    "three": "^0.160.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",

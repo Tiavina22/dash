@@ -39,6 +39,57 @@ export const useGithub = () => {
     return `${years} ans ${months} mois`;
   };
 
+  const calculateStreaks = (contributionDays: any[]) => {
+    let currentStreak = 0;
+    let maxStreak = 0;
+    let tempStreak = 0;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Trier les jours par date (du plus récent au plus ancien)
+    const sortedDays = [...contributionDays].sort((a, b) => 
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+
+    // Calculer le streak actuel
+    for (let i = 0; i < sortedDays.length; i++) {
+      const day = new Date(sortedDays[i].date);
+      day.setHours(0, 0, 0, 0);
+      
+      if (sortedDays[i].contributionCount > 0) {
+        if (i === 0) {
+          currentStreak = 1;
+        } else {
+          const prevDay = new Date(sortedDays[i - 1].date);
+          prevDay.setHours(0, 0, 0, 0);
+          const diffDays = Math.floor((day.getTime() - prevDay.getTime()) / (1000 * 60 * 60 * 24));
+          
+          if (diffDays === 1) {
+            currentStreak++;
+          } else {
+            break;
+          }
+        }
+      } else {
+        break;
+      }
+    }
+
+    // Calculer le streak maximum
+    for (let i = 0; i < sortedDays.length; i++) {
+      if (sortedDays[i].contributionCount > 0) {
+        tempStreak++;
+        if (tempStreak > maxStreak) {
+          maxStreak = tempStreak;
+        }
+      } else {
+        tempStreak = 0;
+      }
+    }
+
+    return { currentStreak, maxStreak };
+  };
+
   const fetchDetailedContributionData = async (username: string) => {
     try {
       const query = `
@@ -111,6 +162,9 @@ export const useGithub = () => {
       const contributionDays = response.user.contributionsCollection.contributionCalendar.weeks
         .flatMap((week: any) => week.contributionDays);
 
+      // Calculer les streaks
+      const { currentStreak, maxStreak } = calculateStreaks(contributionDays);
+
       const contributionsByDay: { [key: string]: number } = {};
       const contributionsByMonth: { [key: string]: number } = {};
       let maxContributions = 0;
@@ -162,6 +216,8 @@ export const useGithub = () => {
         ...prev,
         totalContributions,
         contributionsLastYear: totalContributions,
+        currentStreak,
+        maxStreak,
         contributionsByDay,
         contributionsByMonth: Object.entries(contributionsByMonth).map(([month, count]) => ({
           month,

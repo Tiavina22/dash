@@ -260,6 +260,32 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                         </div>
                       </div>
 
+                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600 hover:border-yellow-500 dark:hover:border-yellow-400 transition-all duration-300 hover:scale-[1.02]">
+                        <div className="flex items-center gap-2">
+                          <GitCommit className="w-4 h-4 text-yellow-500 dark:text-yellow-400" />
+                          <span className="text-gray-700 dark:text-gray-300">Streak en cours</span>
+                        </div>
+                        <div className="flex items-baseline gap-1 mt-1">
+                          <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                            {contributionStats.currentStreak}
+                          </p>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">jours</span>
+                        </div>
+                      </div>
+
+                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600 hover-border-red-500 dark:hover:border-red-400 transition-all duration-300 hover:scale-[1.02]">
+                        <div className="flex items-center gap-2">
+                          <GitCommit className="w-4 h-4 text-red-500 dark:text-red-400" />
+                          <span className="text-gray-700 dark:text-gray-300">Streak maximum</span>
+                        </div>
+                        <div className="flex items-baseline gap-1 mt-1">
+                          <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                            {contributionStats.maxStreak}
+                          </p>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">jours</span>
+                        </div>
+                      </div>
+
                       <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
                         <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Calendrier des contributions</h4>
                         <div className="overflow-x-auto">
