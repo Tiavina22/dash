@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
+import GitHubCalendar from 'react-github-calendar';
 import html2canvas from 'html2canvas';
 import {
   Star,
@@ -232,7 +233,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
                     <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">Contributions</h3>
                     <div className="space-y-4">
-                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-colors duration-200">
+                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
                         <div className="flex items-center gap-2">
                           <GitCommit className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                           <span className="text-gray-700 dark:text-gray-300">Total des contributions</span>
@@ -242,7 +243,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                         </p>
                       </div>
 
-                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-400 transition-colors duration-200">
+                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
                         <div className="flex items-center gap-2">
                           <GitCommit className="w-4 h-4 text-green-500 dark:text-green-400" />
                           <span className="text-gray-700 dark:text-gray-300">Contributions (12 derniers mois)</span>
@@ -250,6 +251,28 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                         <p className="text-2xl font-bold mt-1 text-gray-900 dark:text-white">
                           {contributionStats.contributionsLastYear}
                         </p>
+                      </div>
+
+                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
+                        <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Calendrier des contributions</h4>
+                        <div className="overflow-x-auto">
+                          <GitHubCalendar
+                            username={userData.login}
+                            blockSize={12}
+                            blockMargin={4}
+                            fontSize={12}
+                            colorScheme={theme === 'dark' ? 'dark' : 'light'}
+                            theme={{
+                              light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
+                              dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353']
+                            }}
+                            style={{
+                              width: '100%',
+                              maxWidth: '100%',
+                              margin: '0 auto'
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
