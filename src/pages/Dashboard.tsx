@@ -3,6 +3,7 @@ import html2canvas from 'html2canvas';
 import { useGithub } from '../hooks/useGithub';
 import { SearchBar } from '../components/SearchBar';
 import { GithubCard } from '../components/GithubCard';
+import { DetailedStats } from '../components/DetailedStats';
 import { Download } from 'lucide-react';
 import { useTheme } from '../components/ThemeProvider';
 
@@ -96,6 +97,10 @@ export const Dashboard: React.FC = () => {
               repoStats={repoStats}
               contributionStats={contributionStats}
               calculateAccountAge={calculateAccountAge}
+            />
+            <DetailedStats
+              repoStats={repoStats}
+              contributionStats={contributionStats}
             />
             <div className="mt-6 text-center">
               <button
