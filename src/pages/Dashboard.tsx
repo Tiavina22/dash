@@ -79,8 +79,8 @@ export const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen p-4 sm:p-8 bg-white dark:bg-gray-900">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6 lg:px-8 mb-12">
+      <div className="max-w-7xl mx-auto">
         <SearchBar
           username={username}
           setUsername={setUsername}
@@ -88,20 +88,24 @@ export const Dashboard: React.FC = () => {
           loading={loading}
           error={error}
         />
-
+        
         {userData && (
           <>
-            <GithubCard
-              userData={userData}
-              languages={languages}
-              repoStats={repoStats}
-              contributionStats={contributionStats}
-              calculateAccountAge={calculateAccountAge}
-            />
-            <DetailedStats
-              repoStats={repoStats}
-              contributionStats={contributionStats}
-            />
+            <div className="mt-8">
+              <GithubCard
+                userData={userData}
+                languages={languages}
+                repoStats={repoStats}
+                contributionStats={contributionStats}
+                calculateAccountAge={calculateAccountAge}
+              />
+            </div>
+            <div className="mt-8">
+              <DetailedStats
+                repoStats={repoStats}
+                contributionStats={contributionStats}
+              />
+            </div>
           </>
         )}
       </div>
