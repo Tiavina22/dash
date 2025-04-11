@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import { useGithub } from '../hooks/useGithub';
 import { SearchBar } from '../components/SearchBar';
@@ -7,7 +7,11 @@ import { DetailedStats } from '../components/DetailedStats';
 import { Download } from 'lucide-react';
 import { useTheme } from '../components/ThemeProvider';
 
-export const Dashboard: React.FC = () => {
+interface DashboardProps {
+  initialUsername?: string;
+}
+
+export const Dashboard: React.FC<DashboardProps> = ({ initialUsername = '' }) => {
   const {
     username,
     setUsername,
@@ -22,6 +26,13 @@ export const Dashboard: React.FC = () => {
   } = useGithub();
 
   const { theme } = useTheme();
+
+  useEffect(() => {
+    if (initialUsername) {
+      setUsername(initialUsername);
+      fetchGitHubData();
+    }
+  }, [initialUsername]);
 
   const exportAsImage = async () => {
     const card = document.getElementById('github-card');

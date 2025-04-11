@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { Search } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 interface SearchBarProps {
   username: string;
@@ -15,29 +17,57 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   loading,
   error,
 }) => {
+  const location = useLocation();
+  const initialRender = useRef(true);
+
+  useEffect(() => {
+    // Si on vient de la page Hero (avec un username dans l'URL)
+    if (username && location.state?.fromHero) {
+      onSearch();
+    }
+  }, [username, location.state?.fromHero]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (username.trim()) {
+      onSearch();
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center">
-      <div className="relative w-full max-w-md">
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && onSearch()}
-          placeholder="Entrez un nom d'utilisateur GitHub"
-          className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600"
-          disabled={loading}
-        />
-        <button
-          onClick={onSearch}
-          disabled={loading}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-1 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-        >
-          {loading ? 'Chargement...' : 'Rechercher'}
-        </button>
-      </div>
-      {error && (
-        <p className="mt-2 text-sm text-red-500">{error}</p>
-      )}
+    <div className="max-w-2xl mx-auto">
+      <form onSubmit={handleSubmit} className="relative">
+        <div className="relative flex items-center">
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Entrez un nom d'utilisateur GitHub"
+            className="w-full px-4 py-3 pl-12 pr-32 text-gray-900 dark:text-white bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent"
+            disabled={loading}
+          />
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-gray-400" />
+          </div>
+          <button
+            type="submit"
+            disabled={loading || !username.trim()}
+            className="absolute right-0 inset-y-0 px-4 py-2 text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-r-lg transition-colors duration-200"
+          >
+            {loading ? (
+              <div className="flex items-center">
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                Chargement...
+              </div>
+            ) : (
+              'Rechercher'
+            )}
+          </button>
+        </div>
+        {error && (
+          <p className="mt-2 text-sm text-red-600 dark:text-red-400">{error}</p>
+        )}
+      </form>
     </div>
   );
 }; 

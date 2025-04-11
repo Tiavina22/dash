@@ -20,7 +20,7 @@ export const LandingPage: React.FC = () => {
               to="/dashboard"
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
             >
-              Commencer
+              Get Started
             </Link>
             <a
               href="https://github.com/Tiavina22/dash"
