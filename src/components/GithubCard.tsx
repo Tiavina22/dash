@@ -1,5 +1,5 @@
 import React from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import {
   Star,
   GitFork,
@@ -34,6 +34,13 @@ export const GithubCard: React.FC<GithubCardProps> = ({
   contributionStats,
   calculateAccountAge,
 }) => {
+  // Calculer le total des langages pour les pourcentages
+  const totalLanguages = languages.reduce((sum, lang) => sum + lang.value, 0);
+  const languagesWithPercentage = languages.map(lang => ({
+    ...lang,
+    percentage: ((lang.value / totalLanguages) * 100).toFixed(1)
+  }));
+
   return (
     <div className="bg-gray-800 rounded-xl p-6 shadow-xl" id="github-card">
       <div className="flex flex-col md:flex-row gap-6">
@@ -99,24 +106,53 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
-                      data={languages}
+                      data={languagesWithPercentage}
                       dataKey="value"
                       nameKey="name"
                       cx="50%"
                       cy="50%"
                       outerRadius={80}
-                      fill="#8884d8"
+                      label={({ name, percentage }) => `${name} (${percentage}%)`}
+                      labelLine={false}
                     >
-                      {languages.map((_, index) => (
+                      {languagesWithPercentage.map((_, index) => (
                         <Cell
                           key={`cell-${index}`}
                           fill={COLORS[index % COLORS.length]}
                         />
                       ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip 
+                      formatter={(value: number, name: string, props: any) => [
+                        `${props.payload.percentage}%`,
+                        name
+                      ]}
+                    />
+                    <Legend 
+                      layout="vertical" 
+                      align="right" 
+                      verticalAlign="middle"
+                      formatter={(value: string) => (
+                        <span className="text-sm text-gray-300">{value}</span>
+                      )}
+                    />
                   </PieChart>
                 </ResponsiveContainer>
+              </div>
+              <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {languagesWithPercentage.map((lang, index) => (
+                  <div 
+                    key={lang.name} 
+                    className="flex items-center gap-2 text-sm"
+                  >
+                    <div 
+                      className="w-3 h-3 rounded-full" 
+                      style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                    />
+                    <span className="text-gray-300">{lang.name}</span>
+                    <span className="text-gray-400">({lang.percentage}%)</span>
+                  </div>
+                ))}
               </div>
             </div>
 
