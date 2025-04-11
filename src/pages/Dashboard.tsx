@@ -79,7 +79,7 @@ export const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6 lg:px-8 mb-12">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-4 sm:py-8 px-2 sm:px-4 lg:px-8 mb-8 sm:mb-12">
       <div className="max-w-7xl mx-auto">
         <SearchBar
           username={username}
@@ -91,7 +91,7 @@ export const Dashboard: React.FC = () => {
         
         {userData && (
           <>
-            <div className="mt-8">
+            <div className="mt-4 sm:mt-8">
               <GithubCard
                 userData={userData}
                 languages={languages}
@@ -100,7 +100,7 @@ export const Dashboard: React.FC = () => {
                 calculateAccountAge={calculateAccountAge}
               />
             </div>
-            <div className="mt-8">
+            <div className="mt-4 sm:mt-8">
               <DetailedStats
                 repoStats={repoStats}
                 contributionStats={contributionStats}

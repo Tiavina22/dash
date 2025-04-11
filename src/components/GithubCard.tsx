@@ -170,7 +170,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
                     <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">Langages utilisés</h3>
-                    <div className="h-[200px]">
+                    <div className="h-[200px] sm:h-[250px] md:h-[300px]">
                       <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                           <Pie
@@ -222,8 +222,8 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                             className="w-3 h-3 rounded-full" 
                             style={{ backgroundColor: COLORS[index % COLORS.length] }}
                           />
-                          <span className="text-gray-700 dark:text-gray-300">{lang.name}</span>
-                          <span className="text-gray-500 dark:text-gray-400">({lang.percentage}%)</span>
+                          <span className="text-gray-700 dark:text-gray-300 truncate">{lang.name}</span>
+                          <span className="text-gray-500 dark:text-gray-400 whitespace-nowrap">({lang.percentage}%)</span>
                         </div>
                       ))}
                     </div>
