@@ -4,6 +4,7 @@ import { useGithub } from '../hooks/useGithub';
 import { SearchBar } from '../components/SearchBar';
 import { GithubCard } from '../components/GithubCard';
 import { Download } from 'lucide-react';
+import { useTheme } from '../components/ThemeProvider';
 
 export const Dashboard: React.FC = () => {
   const {
@@ -19,6 +20,8 @@ export const Dashboard: React.FC = () => {
     fetchGitHubData,
   } = useGithub();
 
+  const { theme } = useTheme();
+
   const exportAsImage = async () => {
     const card = document.getElementById('github-card');
     if (card) {
@@ -33,7 +36,7 @@ export const Dashboard: React.FC = () => {
       try {
         const canvas = await html2canvas(clone, { 
           useCORS: true,
-          backgroundColor: '#1F2937',
+          backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
           scale: 2,
           logging: false,
           allowTaint: true,
@@ -51,13 +54,13 @@ export const Dashboard: React.FC = () => {
                 element.style.visibility = 'visible';
               });
 
-              clonedCard.style.background = '#1F2937';
+              clonedCard.style.background = theme === 'dark' ? '#1F2937' : '#FFFFFF';
               clonedCard.style.boxShadow = 'none';
               
               const borders = clonedCard.querySelectorAll('[class*="border"]');
               borders.forEach((el) => {
                 const element = el as HTMLElement;
-                element.style.borderColor = '#374151';
+                element.style.borderColor = theme === 'dark' ? '#374151' : '#E5E7EB';
               });
             }
           }
@@ -75,7 +78,7 @@ export const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen p-4 sm:p-8">
+    <div className="min-h-screen p-4 sm:p-8 bg-white dark:bg-gray-900">
       <div className="max-w-4xl mx-auto">
         <SearchBar
           username={username}
@@ -97,7 +100,7 @@ export const Dashboard: React.FC = () => {
             <div className="mt-6 text-center">
               <button
                 onClick={exportAsImage}
-                className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out rounded-lg shadow-lg group bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out rounded-lg shadow-lg group bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-900"
               >
                 <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
                   <Download className="w-6 h-6" />
