@@ -102,20 +102,6 @@ export const Dashboard: React.FC = () => {
               repoStats={repoStats}
               contributionStats={contributionStats}
             />
-            <div className="mt-6 text-center">
-              <button
-                onClick={exportAsImage}
-                className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out rounded-lg shadow-lg group bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-900"
-              >
-                <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
-                  <Download className="w-6 h-6" />
-                </span>
-                <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform group-hover:translate-x-full ease">
-                  Exporter en PNG
-                </span>
-                <span className="relative invisible">Exporter en PNG</span>
-              </button>
-            </div>
           </>
         )}
       </div>
