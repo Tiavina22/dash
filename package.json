@@ -10,13 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@octokit/graphql": "^7.0.2",
+    "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.6.7",
+    "html2canvas": "^1.4.1",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "recharts": "^2.12.2",
-    "html2canvas": "^1.4.1",
-    "axios": "^1.6.7",
-    "@octokit/graphql": "^7.0.2"
+    "react-router-dom": "^7.5.0",
+    "recharts": "^2.12.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
