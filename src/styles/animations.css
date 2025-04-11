@@ -1,0 +1,38 @@
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes blink {
+  0%, 96%, 100% {
+    transform: scaleY(1);
+  }
+  98% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes wag {
+  0%, 100% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(-60deg);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+.animate-blink {
+  animation: blink 3s infinite;
+}
+
+.animate-wag {
+  animation: wag 1s infinite;
+} 
