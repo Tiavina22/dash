@@ -112,59 +112,58 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                   </div>
                   <button
                     onClick={() => exportAsImage(cardRef.current!, `${userData?.login || 'github'}-stats`)}
-                    className="export-button"
+                    className="export-button flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                     title="Exporter la carte en image PNG"
                   >
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                      />
-                    </svg>
-                    Exporter en PNG
+                    <Download className="w-5 h-5" />
+                    <span>Exporter en PNG</span>
                   </button>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">{userData.bio || 'No bio available'}</p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-colors duration-200">
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:scale-[1.02]">
                     <div className="flex items-center gap-2 mb-2">
                       <Code className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                       <span className="font-semibold text-gray-700 dark:text-gray-300">Dépôts publics</span>
                     </div>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white">{userData.public_repos}</p>
+                    <div className="flex items-baseline gap-1">
+                      <p className="text-2xl font-bold text-gray-900 dark:text-white">{userData.public_repos}</p>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">repos</span>
+                    </div>
                   </div>
 
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-400 transition-colors duration-200">
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-400 transition-all duration-300 hover:scale-[1.02]">
                     <div className="flex items-center gap-2 mb-2">
                       <Users className="w-5 h-5 text-green-500 dark:text-green-400" />
                       <span className="font-semibold text-gray-700 dark:text-gray-300">Followers</span>
                     </div>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white">{userData.followers}</p>
+                    <div className="flex items-baseline gap-1">
+                      <p className="text-2xl font-bold text-gray-900 dark:text-white">{userData.followers}</p>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">followers</span>
+                    </div>
                   </div>
 
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-yellow-500 dark:hover:border-yellow-400 transition-colors duration-200">
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-yellow-500 dark:hover:border-yellow-400 transition-all duration-300 hover:scale-[1.02]">
                     <div className="flex items-center gap-2 mb-2">
                       <Star className="w-5 h-5 text-yellow-500 dark:text-yellow-400" />
                       <span className="font-semibold text-gray-700 dark:text-gray-300">Total Stars</span>
                     </div>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white">{repoStats.stars}</p>
+                    <div className="flex items-baseline gap-1">
+                      <p className="text-2xl font-bold text-gray-900 dark:text-white">{repoStats.stars}</p>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">stars</span>
+                    </div>
                   </div>
 
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-purple-500 dark:hover:border-purple-400 transition-colors duration-200">
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-purple-500 dark:hover:border-purple-400 transition-all duration-300 hover:scale-[1.02]">
                     <div className="flex items-center gap-2 mb-2">
                       <GitFork className="w-5 h-5 text-purple-500 dark:text-purple-400" />
                       <span className="font-semibold text-gray-700 dark:text-gray-300">Total Forks</span>
                     </div>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white">{repoStats.forks}</p>
+                    <div className="flex items-baseline gap-1">
+                      <p className="text-2xl font-bold text-gray-900 dark:text-white">{repoStats.forks}</p>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">forks</span>
+                    </div>
                   </div>
                 </div>
 
@@ -233,24 +232,30 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
                     <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">Contributions</h3>
                     <div className="space-y-4">
-                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
+                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:scale-[1.02]">
                         <div className="flex items-center gap-2">
                           <GitCommit className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                           <span className="text-gray-700 dark:text-gray-300">Total des contributions</span>
                         </div>
-                        <p className="text-2xl font-bold mt-1 text-gray-900 dark:text-white">
-                          {contributionStats.totalContributions}
-                        </p>
+                        <div className="flex items-baseline gap-1 mt-1">
+                          <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                            {contributionStats.totalContributions}
+                          </p>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">contributions</span>
+                        </div>
                       </div>
 
-                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
+                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-400 transition-all duration-300 hover:scale-[1.02]">
                         <div className="flex items-center gap-2">
                           <GitCommit className="w-4 h-4 text-green-500 dark:text-green-400" />
                           <span className="text-gray-700 dark:text-gray-300">Contributions (12 derniers mois)</span>
                         </div>
-                        <p className="text-2xl font-bold mt-1 text-gray-900 dark:text-white">
-                          {contributionStats.contributionsLastYear}
-                        </p>
+                        <div className="flex items-baseline gap-1 mt-1">
+                          <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                            {contributionStats.contributionsLastYear}
+                          </p>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">contributions</span>
+                        </div>
                       </div>
 
                       <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
@@ -272,6 +277,10 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                               margin: '0 auto'
                             }}
                           />
+                        </div>
+                        <div className="mt-2 flex justify-between text-xs text-gray-500 dark:text-gray-400">
+                          <span>Moins</span>
+                          <span>Plus</span>
                         </div>
                       </div>
                     </div>
