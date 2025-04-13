@@ -37,6 +37,7 @@ const developers = [
   { username: 'RivoLink', name: 'Rivo Link' },
   { username: 'AntoinnetRjuan', name: 'Ratsarafara Jean Antoinnet' },
   { username: 'DMikaia', name: 'Daniel Mikaia' },
+{ username: 'chan-stephane', name: 'Stéphane CHAN HIOU KONG' },
 ];
 
 export const Hero: React.FC = () => {
