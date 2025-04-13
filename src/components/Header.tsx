@@ -56,7 +56,7 @@ export const Header: React.FC = () => {
               <Github className="h-5 w-5" />
             </a>
             <a
-              href="https://pay.skrill.com/pay/tiavina-ramilison"
+              href="https://skrill.me/rq/Noharitiana%20Vonitiavina/2.99/EUR?key=85_zgXCvdMxrbeYhdUyd37bfZwP"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 text-gray-500 hover:text-red-500 dark:text-gray-300 dark:hover:text-red-400 transition-colors duration-200"
