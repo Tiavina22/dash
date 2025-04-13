@@ -70,12 +70,12 @@ export const Footer: React.FC = () => {
                   <span className="text-sm text-gray-600 dark:text-gray-400">
                     Supportez-moi sur{' '}
                     <a
-                      href="https://www.paypal.com/donate/?hosted_button_id=tiavinaramilison22@gmail.com"
+                      href="https://skrill.me/rq/Noharitiana%20Vonitiavina/2.99/EUR?key=85_zgXCvdMxrbeYhdUyd37bfZwP"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
                     >
-                      PayPal
+                      Skrill
                     </a>
                   </span>
                 </div>
