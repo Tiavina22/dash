@@ -2,10 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Activity } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
+import { useTranslation } from 'react-i18next';
 
 const LoadingScreen: React.FC = () => {
   const bars = Array.from({ length: 5 }, (_, i) => i);
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   const isDark = theme === 'dark';
 
@@ -45,9 +47,9 @@ const LoadingScreen: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className={`mt-8 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}
+          className={`mt-8 text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'}`}
         >
-          Chargement de l'application...
+          {t('common.loadingApp')}
         </motion.p>
       </motion.div>
     </div>

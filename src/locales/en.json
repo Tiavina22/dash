@@ -1,0 +1,158 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Logout",
+    "language": "Language",
+    "french": "French",
+    "english": "English",
+    "search": "Search",
+    "loading": "Loading...",
+    "loadingApp": "Loading application...",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "export": "Export",
+    "import": "Import",
+    "download": "Download",
+    "upload": "Upload",
+    "viewSource": "View source code",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode",
+    "githubProfile": "GitHub Profile",
+    "linkedinProfile": "LinkedIn Profile",
+    "supportMe": "Support me on",
+    "exportError": "Error exporting image"
+  },
+  "developers": {
+    "title": "Discover Malagasy Developers",
+    "description": "Explore the contributions and projects of talented developers from Madagascar",
+    "viewProfile": "View Profile",
+    "shareProfile": "Share Profile",
+    "copied": "Link copied!",
+    "copyError": "Error copying link",
+    "repositories": "Repositories",
+    "stars": "Stars",
+    "forks": "Forks",
+    "contributions": "Contributions",
+    "followers": "Followers",
+    "following": "Following",
+    "gists": "Gists",
+    "detailedStats": "Detailed Statistics",
+    "pullRequests": "Pull Requests",
+    "issues": "Issues",
+    "open": "Open",
+    "merged": "Merged",
+    "closed": "Closed",
+    "monthlyContributions": "Monthly Contributions",
+    "mostStarredRepos": "Most Starred Repositories",
+    "mostProductiveDay": "Most Productive Day",
+    "dailyAverage": "Daily Average",
+    "contributionsPerDay": "contributions per day",
+    "currentStreak": "Current Streak",
+    "maxStreak": "Maximum Streak",
+    "less": "Less",
+    "more": "More",
+    "contributionsLastYear": "Contributions (Last Year)",
+    "publicRepos": "Public Repositories",
+    "totalStars": "Total Stars",
+    "totalContributions": "Total Contributions",
+    "usedLanguages": "Used Languages",
+    "days": "days"
+  },
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "hero": "Hero",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "copyright": "© 2024 All rights reserved",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
+  },
+  "landing": {
+    "description": "View your GitHub statistics in an elegant and modern way. Get insights into your contributions, languages used, and much more.",
+    "getStarted": "Get Started",
+    "viewCode": "View Code",
+    "noSignup": "No signup required • Just use your GitHub username",
+    "interfacePreview": "Interface Preview",
+    "interfaceDescription": "Discover an intuitive and modern interface to visualize your GitHub statistics.",
+    "interfaceAlt": "GitDash Interface",
+    "features": {
+      "languages": {
+        "title": "Languages Used",
+        "description": "Discover which programming languages you use most in your projects."
+      },
+      "stats": {
+        "title": "Repository Stats",
+        "description": "Visualize total stars, forks, and contributions."
+      },
+      "contributions": {
+        "title": "Social Activity",
+        "description": "Track your GitHub growth with detailed statistics."
+      }
+    },
+    "whyChoose": {
+      "title": "Why choose GitDash?",
+      "performance": {
+        "title": "Performance",
+        "description": "Fast and responsive interface for an optimal user experience."
+      },
+      "security": {
+        "title": "Security",
+        "description": "GitDash doesn't store any data. We only use the GitHub API to display your statistics in real-time."
+      },
+      "analytics": {
+        "title": "Advanced Analytics",
+        "description": "Detailed charts and statistics to track your progress."
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "dataAccess": {
+        "question": "How does GitDash access my GitHub data?",
+        "answer": "GitDash uses the official GitHub API to access your public data. No data is stored on our servers."
+      },
+      "pricing": {
+        "question": "Is GitDash free?",
+        "answer": "Yes, GitDash is completely free and open-source. You can use it without any limitations."
+      },
+      "stats": {
+        "question": "What statistics can I see?",
+        "answer": "You can see your contributions, programming languages used, repository statistics, and much more."
+      }
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "searchPlaceholder": "Enter a GitHub username...",
+    "searchButton": "Search",
+    "loading": "Loading data...",
+    "error": "Error loading data",
+    "noData": "No data available",
+    "stats": {
+      "repositories": "Repositories",
+      "stars": "Stars",
+      "forks": "Forks",
+      "contributions": "Contributions",
+      "followers": "Followers",
+      "following": "Following",
+      "accountAge": "Account created"
+    },
+    "languages": {
+      "title": "Languages used",
+      "noData": "No languages available"
+    },
+    "contributions": {
+      "title": "Contributions",
+      "lastYear": "Last year",
+      "lastMonth": "Last month",
+      "lastWeek": "Last week"
+    }
+  }
+} 

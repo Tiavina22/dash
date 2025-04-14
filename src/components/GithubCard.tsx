@@ -14,6 +14,7 @@ import {
 import { GitHubUser, LanguageData, RepoStats, ContributionStats } from '../types/github';
 import { useTheme } from './ThemeProvider';
 import './GithubCard.css';
+import { useTranslation } from 'react-i18next';
 
 interface GithubCardProps {
   userData: GitHubUser;
@@ -21,6 +22,27 @@ interface GithubCardProps {
   repoStats: RepoStats;
   contributionStats: ContributionStats;
   calculateAccountAge: (createdAt: string) => string;
+  translations?: {
+    stats: {
+      repositories: string;
+      stars: string;
+      forks: string;
+      contributions: string;
+      followers: string;
+      following: string;
+      accountAge: string;
+    };
+    languages: {
+      title: string;
+      noData: string;
+    };
+    contributions: {
+      title: string;
+      lastYear: string;
+      lastMonth: string;
+      lastWeek: string;
+    };
+  };
 }
 
 const COLORS = [
@@ -38,9 +60,35 @@ export const GithubCard: React.FC<GithubCardProps> = ({
   repoStats,
   contributionStats,
   calculateAccountAge,
+  translations
 }) => {
   const { theme } = useTheme();
   const cardRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
+
+  const defaultTranslations = {
+    stats: {
+      repositories: 'Repositories',
+      stars: 'Stars',
+      forks: 'Forks',
+      contributions: 'Contributions',
+      followers: 'Followers',
+      following: 'Following',
+      accountAge: 'Account created'
+    },
+    languages: {
+      title: 'Languages used',
+      noData: 'No languages available'
+    },
+    contributions: {
+      title: 'Contributions',
+      lastYear: 'Last year',
+      lastMonth: 'Last month',
+      lastWeek: 'Last week'
+    }
+  };
+
+  const tTranslated = translations || defaultTranslations;
 
   const exportAsImage = async (element: HTMLElement, imageFileName: string) => {
     try {
@@ -125,33 +173,33 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:scale-[1.02]">
                     <div className="flex items-center gap-2 mb-2">
                       <Code className="w-5 h-5 text-blue-500 dark:text-blue-400" />
-                      <span className="font-semibold text-gray-700 dark:text-gray-300">Dépôts publics</span>
+                      <span className="font-semibold text-gray-700 dark:text-gray-300">{t('developers.publicRepos')}</span>
                     </div>
                     <div className="flex items-baseline gap-1">
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">{userData.public_repos}</p>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">repos</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">{t('developers.publicRepos')}</span>
                     </div>
                   </div>
 
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-400 transition-all duration-300 hover:scale-[1.02]">
                     <div className="flex items-center gap-2 mb-2">
                       <Users className="w-5 h-5 text-green-500 dark:text-green-400" />
-                      <span className="font-semibold text-gray-700 dark:text-gray-300">Followers</span>
+                      <span className="font-semibold text-gray-700 dark:text-gray-300">{t('developers.followers')}</span>
                     </div>
                     <div className="flex items-baseline gap-1">
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">{userData.followers}</p>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">followers</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">{t('developers.followers')}</span>
                     </div>
                   </div>
 
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-yellow-500 dark:hover:border-yellow-400 transition-all duration-300 hover:scale-[1.02]">
                     <div className="flex items-center gap-2 mb-2">
                       <Star className="w-5 h-5 text-yellow-500 dark:text-yellow-400" />
-                      <span className="font-semibold text-gray-700 dark:text-gray-300">Total Stars</span>
+                      <span className="font-semibold text-gray-700 dark:text-gray-300">{t('developers.totalStars')}</span>
                     </div>
                     <div className="flex items-baseline gap-1">
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">{repoStats.stars}</p>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">stars</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">{t('developers.totalStars')}</span>
                     </div>
                   </div>
 
@@ -237,26 +285,26 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                       <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:scale-[1.02]">
                         <div className="flex items-center gap-2">
                           <GitCommit className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                          <span className="text-gray-700 dark:text-gray-300">Total des contributions</span>
+                          <span className="text-gray-700 dark:text-gray-300">{t('developers.totalContributions')}</span>
                         </div>
                         <div className="flex items-baseline gap-1 mt-1">
                           <p className="text-2xl font-bold text-gray-900 dark:text-white">
                             {contributionStats.totalContributions}
                           </p>
-                          <span className="text-sm text-gray-500 dark:text-gray-400">contributions</span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">{t('developers.totalContributions')}</span>
                         </div>
                       </div>
 
                       <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-400 transition-all duration-300 hover:scale-[1.02]">
                         <div className="flex items-center gap-2">
                           <GitCommit className="w-4 h-4 text-green-500 dark:text-green-400" />
-                          <span className="text-gray-700 dark:text-gray-300">Contributions (12 derniers mois)</span>
+                          <span className="text-gray-700 dark:text-gray-300">{t('developers.contributionsLastYear')}</span>
                         </div>
                         <div className="flex items-baseline gap-1 mt-1">
                           <p className="text-2xl font-bold text-gray-900 dark:text-white">
                             {contributionStats.contributionsLastYear}
                           </p>
-                          <span className="text-sm text-gray-500 dark:text-gray-400">contributions</span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">{t('developers.contributionsLastYear')}</span>
                         </div>
                       </div>
 
@@ -269,7 +317,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                           <p className="text-2xl font-bold text-gray-900 dark:text-white">
                             {contributionStats.currentStreak}
                           </p>
-                          <span className="text-sm text-gray-500 dark:text-gray-400">jours</span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">{t('developers.currentStreak')} ({contributionStats.currentStreak} {t('developers.days')})</span>
                         </div>
                       </div>
 
@@ -282,7 +330,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                           <p className="text-2xl font-bold text-gray-900 dark:text-white">
                             {contributionStats.maxStreak}
                           </p>
-                          <span className="text-sm text-gray-500 dark:text-gray-400">jours</span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">{t('developers.maxStreak')} ({contributionStats.maxStreak} {t('developers.days')})</span>
                         </div>
                       </div>
 
@@ -307,8 +355,8 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                           />
                         </div>
                         <div className="mt-2 flex justify-between text-xs text-gray-500 dark:text-gray-400">
-                          <span>Moins</span>
-                          <span>Plus</span>
+                          <span>{t('developers.less')}</span>
+                          <span>{t('developers.more')}</span>
                         </div>
                       </div>
                     </div>

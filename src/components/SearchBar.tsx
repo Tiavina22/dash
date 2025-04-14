@@ -8,6 +8,8 @@ interface SearchBarProps {
   onSearch: () => void;
   loading: boolean;
   error: string;
+  placeholder?: string;
+  buttonText?: string;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
@@ -16,6 +18,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   onSearch,
   loading,
   error,
+  placeholder = 'Enter a GitHub username...',
+  buttonText = 'Search'
 }) => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
@@ -50,7 +54,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Entrez un nom d'utilisateur GitHub"
+            placeholder={placeholder}
             className="w-full px-4 py-3 pl-12 pr-32 text-gray-900 dark:text-white bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent"
             disabled={loading}
           />
@@ -68,7 +72,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                 Chargement...
               </div>
             ) : (
-              'Rechercher'
+              <div className="flex items-center gap-2">
+                <Search className="w-5 h-5" />
+                <span>{buttonText}</span>
+              </div>
             )}
           </button>
         </div>

@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../components/ThemeProvider';
 import { developers } from '../data/developers';
+import { useTranslation } from 'react-i18next';
 
 export const Hero: React.FC = () => {
   const navigate = useNavigate();
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const [copiedUsername, setCopiedUsername] = useState<string | null>(null);
 
   const handleProfileClick = (username: string) => {
@@ -21,7 +23,7 @@ export const Hero: React.FC = () => {
       setCopiedUsername(username);
       setTimeout(() => setCopiedUsername(null), 2000);
     } catch (err) {
-      console.error('Erreur lors de la copie du lien:', err);
+      console.error(t('developers.copyError'), err);
     }
   };
 
@@ -36,12 +38,12 @@ export const Hero: React.FC = () => {
           <h1 className={`text-4xl font-bold mb-4 ${
             theme === 'dark' ? 'text-white' : 'text-gray-900'
           }`}>
-            Découvrez les Développeurs Malgaches
+            {t('developers.title')}
           </h1>
           <p className={`text-xl ${
             theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
           }`}>
-            Explorez les contributions et les projets de développeurs talentueux de Madagascar
+            {t('developers.description')}
           </p>
         </div>
 
@@ -82,7 +84,7 @@ export const Hero: React.FC = () => {
                   }`}>@{dev.username}</p>
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2 text-blue-400">
-                      <span>Voir le profil</span>
+                      <span>{t('developers.viewProfile')}</span>
                       <svg
                         className="w-4 h-4"
                         fill="none"
@@ -101,7 +103,7 @@ export const Hero: React.FC = () => {
                       <button
                         onClick={(e) => handleShareClick(dev.username, e)}
                         className="p-2 text-blue-400 hover:text-blue-500 transition-colors"
-                        title="Copier le lien du profil"
+                        title={t('developers.shareProfile')}
                       >
                         <svg
                           className="w-5 h-5"
@@ -129,7 +131,7 @@ export const Hero: React.FC = () => {
                                 : 'bg-gray-100 text-gray-800'
                             }`}
                           >
-                            Lien copié !
+                            {t('developers.copied')}
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -145,7 +147,7 @@ export const Hero: React.FC = () => {
           <p className={`${
             theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
           }`}>
-            Cliquez sur un profil pour voir les statistiques détaillées
+            {t('developers.viewProfile')}
           </p>
         </div>
       </div>

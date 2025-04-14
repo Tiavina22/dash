@@ -1,0 +1,131 @@
+{
+  "common": {
+    "welcome": "Bienvenue",
+    "dashboard": "Tableau de bord",
+    "settings": "Paramètres",
+    "profile": "Profil",
+    "logout": "Déconnexion",
+    "language": "Langue",
+    "french": "Français",
+    "english": "Anglais",
+    "search": "Rechercher",
+    "loading": "Chargement...",
+    "loadingApp": "Chargement de l'application...",
+    "error": "Erreur",
+    "success": "Succès",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "export": "Exporter",
+    "import": "Importer",
+    "download": "Télécharger",
+    "upload": "Téléverser",
+    "viewSource": "Voir le code source",
+    "switchToLight": "Passer en mode clair",
+    "switchToDark": "Passer en mode sombre",
+    "githubProfile": "Profil GitHub",
+    "linkedinProfile": "Profil LinkedIn",
+    "supportMe": "Supportez-moi sur",
+    "exportError": "Erreur lors de l'export de l'image"
+  },
+  "developers": {
+    "title": "Découvrez les Développeurs Malgaches",
+    "description": "Explorez les contributions et les projets de développeurs talentueux de Madagascar",
+    "viewProfile": "Voir le profil",
+    "shareProfile": "Partager le profil",
+    "copied": "Lien copié !",
+    "copyError": "Erreur lors de la copie du lien",
+    "repositories": "Dépôts",
+    "stars": "Étoiles",
+    "forks": "Forks",
+    "contributions": "Contributions",
+    "followers": "Abonnés",
+    "following": "Abonnements",
+    "gists": "Gists",
+    "detailedStats": "Statistiques détaillées",
+    "pullRequests": "Pull Requests",
+    "issues": "Issues",
+    "open": "Ouvertes",
+    "merged": "Fusionnées",
+    "closed": "Fermées",
+    "monthlyContributions": "Contributions mensuelles",
+    "mostStarredRepos": "Dépôts les plus étoilés",
+    "mostProductiveDay": "Jour le plus productif",
+    "dailyAverage": "Moyenne quotidienne",
+    "contributionsPerDay": "contributions par jour",
+    "currentStreak": "Série en cours",
+    "maxStreak": "Série maximale",
+    "less": "Moins",
+    "more": "Plus",
+    "contributionsLastYear": "Contributions (12 derniers mois)",
+    "publicRepos": "Dépôts publics",
+    "totalStars": "Total des étoiles",
+    "totalContributions": "Total des contributions",
+    "usedLanguages": "Langages utilisés",
+    "days": "jours"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord",
+    "hero": "Héros",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "footer": {
+    "copyright": "© 2024 Tous droits réservés",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité"
+  },
+  "landing": {
+    "description": "Visualisez vos statistiques GitHub d'une manière élégante et moderne. Obtenez des insights sur vos contributions, langages utilisés et bien plus encore.",
+    "getStarted": "Commencer maintenant",
+    "viewCode": "Voir le code",
+    "noSignup": "Aucune inscription requise • Utilisez simplement votre compte username GitHub",
+    "interfacePreview": "Aperçu de l'interface",
+    "interfaceDescription": "Découvrez une interface intuitive et moderne pour visualiser vos statistiques GitHub.",
+    "interfaceAlt": "Interface GitDash",
+    "features": {
+      "languages": {
+        "title": "Langages utilisés",
+        "description": "Découvrez quels langages de programmation vous utilisez le plus dans vos projets."
+      },
+      "stats": {
+        "title": "Statistiques des dépôts",
+        "description": "Visualisez le nombre total d'étoiles, de forks et de contributions."
+      },
+      "contributions": {
+        "title": "Activité sociale",
+        "description": "Suivez votre croissance sur GitHub avec des statistiques détaillées."
+      }
+    },
+    "whyChoose": {
+      "title": "Pourquoi choisir GitDash ?",
+      "performance": {
+        "title": "Performance",
+        "description": "Interface rapide et réactive pour une expérience utilisateur optimale."
+      },
+      "security": {
+        "title": "Sécurité",
+        "description": "GitDash ne stocke aucune donnée. Nous utilisons uniquement l'API GitHub pour afficher vos statistiques en temps réel."
+      },
+      "analytics": {
+        "title": "Analyses avancées",
+        "description": "Des graphiques et statistiques détaillés pour suivre votre progression."
+      }
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "dataAccess": {
+        "question": "Comment GitDash accède-t-il à mes données GitHub ?",
+        "answer": "GitDash utilise l'API GitHub officielle pour accéder à vos données publiques. Aucune donnée n'est stockée sur nos serveurs."
+      },
+      "pricing": {
+        "question": "Est-ce que GitDash est gratuit ?",
+        "answer": "Oui, GitDash est entièrement gratuit et open-source. Vous pouvez l'utiliser sans aucune limitation."
+      },
+      "stats": {
+        "question": "Quelles statistiques puis-je voir ?",
+        "answer": "Vous pouvez voir vos contributions, les langages utilisés, les statistiques des dépôts, et bien plus encore."
+      }
+    }
+  }
+} 

@@ -13,9 +13,13 @@ import { GithubCard } from './components/GithubCard';
 import { DetailedStats } from './components/DetailedStats';
 import { useGithub } from './hooks/useGithub';
 import LoadingScreen from './components/LoadingScreen';
+import LanguageSelector from './components/LanguageSelector';
+import { useTranslation } from 'react-i18next';
+import './styles/language-selector.css';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Simuler un temps de chargement

@@ -3,11 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon, Github } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 import { PayPalButton } from './PayPalButton';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
+  const { t } = useTranslation();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -31,7 +34,7 @@ export const Header: React.FC = () => {
                   : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
               }`}
             >
-              Accueil
+              {t('navigation.home')}
             </Link>
             <Link
               to="/hero"
@@ -41,7 +44,7 @@ export const Header: React.FC = () => {
                   : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
               }`}
             >
-              Développeurs
+              {t('developers.title')}
             </Link>
             <Link
               to="/dashboard"
@@ -51,18 +54,19 @@ export const Header: React.FC = () => {
                   : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
               }`}
             >
-              Dashboard
+              {t('navigation.dashboard')}
             </Link>
           </nav>
 
           {/* Right side icons */}
           <div className="flex items-center space-x-4">
+            <LanguageSelector />
             <a
               href="https://github.com/Tiavina22/dash"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
-              title="Voir le code source"
+              title={t('common.viewSource')}
             >
               <Github className="h-5 w-5" />
             </a>
@@ -72,7 +76,7 @@ export const Header: React.FC = () => {
             <button
               onClick={toggleTheme}
               className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
-              title={theme === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre'}
+              title={theme === 'dark' ? t('common.switchToLight') : t('common.switchToDark')}
             >
               {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </button>
@@ -97,35 +101,35 @@ export const Header: React.FC = () => {
                 to="/"
                 className={`block px-3 py-2 rounded-md text-base font-medium ${
                   isActive('/')
-                    ? 'text-blue-600 dark:text-blue-400'
-                    : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                    ? 'bg-blue-50 text-blue-700 dark:bg-blue-900 dark:text-blue-200'
+                    : 'text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700'
                 }`}
-                onClick={() => setIsMenuOpen(false)}
               >
-                Accueil
+                {t('navigation.home')}
               </Link>
               <Link
                 to="/hero"
                 className={`block px-3 py-2 rounded-md text-base font-medium ${
                   isActive('/hero')
-                    ? 'text-blue-600 dark:text-blue-400'
-                    : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                    ? 'bg-blue-50 text-blue-700 dark:bg-blue-900 dark:text-blue-200'
+                    : 'text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700'
                 }`}
-                onClick={() => setIsMenuOpen(false)}
               >
-                Développeurs
+                {t('developers.title')}
               </Link>
               <Link
                 to="/dashboard"
                 className={`block px-3 py-2 rounded-md text-base font-medium ${
                   isActive('/dashboard')
-                    ? 'text-blue-600 dark:text-blue-400'
-                    : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                    ? 'bg-blue-50 text-blue-700 dark:bg-blue-900 dark:text-blue-200'
+                    : 'text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700'
                 }`}
-                onClick={() => setIsMenuOpen(false)}
               >
-                Dashboard
+                {t('navigation.dashboard')}
               </Link>
+              <div className="px-3 py-2">
+                <LanguageSelector />
+              </div>
             </div>
           </div>
         )}

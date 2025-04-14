@@ -6,6 +6,7 @@ import { GithubCard } from '../components/GithubCard';
 import { DetailedStats } from '../components/DetailedStats';
 import { Download } from 'lucide-react';
 import { useTheme } from '../components/ThemeProvider';
+import { useTranslation } from 'react-i18next';
 
 interface DashboardProps {
   initialUsername?: string;
@@ -26,6 +27,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ initialUsername = '' }) =>
   } = useGithub();
 
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (initialUsername) {
@@ -46,45 +48,19 @@ export const Dashboard: React.FC<DashboardProps> = ({ initialUsername = '' }) =>
       document.body.appendChild(clone);
 
       try {
-        const canvas = await html2canvas(clone, { 
-          useCORS: true,
-          backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
+        const canvas = await html2canvas(clone, {
+          backgroundColor: theme === 'dark' ? '#1f2937' : '#ffffff',
           scale: 2,
-          logging: false,
-          allowTaint: true,
-          removeContainer: true,
-          onclone: (clonedDoc) => {
-            const clonedCard = clonedDoc.getElementById('github-card');
-            if (clonedCard) {
-              const elements = clonedCard.querySelectorAll('*');
-              elements.forEach((el) => {
-                const element = el as HTMLElement;
-                element.style.backdropFilter = 'none';
-                element.style.filter = 'none';
-                element.style.opacity = '1';
-                element.style.transform = 'none';
-                element.style.visibility = 'visible';
-              });
-
-              clonedCard.style.background = theme === 'dark' ? '#1F2937' : '#FFFFFF';
-              clonedCard.style.boxShadow = 'none';
-              
-              const borders = clonedCard.querySelectorAll('[class*="border"]');
-              borders.forEach((el) => {
-                const element = el as HTMLElement;
-                element.style.borderColor = theme === 'dark' ? '#374151' : '#E5E7EB';
-              });
-            }
-          }
         });
 
-        const image = canvas.toDataURL('image/png', 1.0);
-        const link = document.createElement('a');
-        link.href = image;
-        link.download = `${username}-github-stats.png`;
-        link.click();
-      } finally {
         document.body.removeChild(clone);
+
+        const link = document.createElement('a');
+        link.download = `${username || 'github-stats'}.png`;
+        link.href = canvas.toDataURL('image/png', 1.0);
+        link.click();
+      } catch (error) {
+        console.error(t('dashboard.error'), error);
       }
     }
   };
@@ -92,14 +68,36 @@ export const Dashboard: React.FC<DashboardProps> = ({ initialUsername = '' }) =>
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-4 sm:py-8 px-2 sm:px-4 lg:px-8 mb-8 sm:mb-12">
       <div className="max-w-7xl mx-auto">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+          {t('dashboard.title')}
+        </h1>
+        
         <SearchBar
           username={username}
           setUsername={setUsername}
           onSearch={fetchGitHubData}
           loading={loading}
           error={error}
+          placeholder={t('dashboard.searchPlaceholder')}
+          buttonText={t('dashboard.searchButton')}
         />
         
+        {loading && (
+          <div className="text-center py-8">
+            <p className="text-gray-600 dark:text-gray-400">
+              {t('dashboard.loading')}
+            </p>
+          </div>
+        )}
+
+        {error && (
+          <div className="text-center py-8">
+            <p className="text-red-600 dark:text-red-400">
+              {t('dashboard.error')}
+            </p>
+          </div>
+        )}
+
         {userData && (
           <>
             <div className="mt-4 sm:mt-8">
@@ -109,15 +107,45 @@ export const Dashboard: React.FC<DashboardProps> = ({ initialUsername = '' }) =>
                 repoStats={repoStats}
                 contributionStats={contributionStats}
                 calculateAccountAge={calculateAccountAge}
+                translations={{
+                  stats: {
+                    repositories: t('dashboard.stats.repositories'),
+                    stars: t('dashboard.stats.stars'),
+                    forks: t('dashboard.stats.forks'),
+                    contributions: t('dashboard.stats.contributions'),
+                    followers: t('dashboard.stats.followers'),
+                    following: t('dashboard.stats.following'),
+                    accountAge: t('dashboard.stats.accountAge')
+                  },
+                  languages: {
+                    title: t('dashboard.languages.title'),
+                    noData: t('dashboard.languages.noData')
+                  },
+                  contributions: {
+                    title: t('dashboard.contributions.title'),
+                    lastYear: t('dashboard.contributions.lastYear'),
+                    lastMonth: t('dashboard.contributions.lastMonth'),
+                    lastWeek: t('dashboard.contributions.lastWeek')
+                  }
+                }}
               />
             </div>
             <div className="mt-4 sm:mt-8">
               <DetailedStats
                 repoStats={repoStats}
                 contributionStats={contributionStats}
+               
               />
             </div>
           </>
+        )}
+
+        {!userData && !loading && !error && (
+          <div className="text-center py-8">
+            <p className="text-gray-600 dark:text-gray-400">
+              {t('dashboard.noData')}
+            </p>
+          </div>
         )}
       </div>
     </div>

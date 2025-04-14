@@ -17,10 +17,13 @@
     "axios": "^1.6.7",
     "framer-motion": "^12.6.5",
     "html2canvas": "^1.4.1",
+    "i18next": "^24.2.3",
+    "i18next-browser-languagedetector": "^8.0.4",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-github-calendar": "^4.5.6",
+    "react-i18next": "^15.4.1",
     "react-router-dom": "^7.5.0",
     "recharts": "^2.12.2",
     "three": "^0.160.0"

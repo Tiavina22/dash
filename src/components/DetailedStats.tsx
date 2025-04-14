@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { RepoStats, ContributionStats } from '../types/github';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
@@ -11,6 +12,8 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
   repoStats,
   contributionStats,
 }) => {
+  const { t } = useTranslation();
+
   const monthlyData = contributionStats.contributionsByMonth || [];
   const dailyData = Object.entries(contributionStats.contributionsByDay || {}).map(
     ([day, count]) => ({
@@ -22,14 +25,14 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mt-6">
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-        Statistiques détaillées
+        {t('developers.detailedStats')}
       </h2>
 
-      {/* Pull Requests et Issues */}
+      {/* Pull Requests and Issues */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-            Pull Requests
+            {t('developers.pullRequests')}
           </h3>
           <div className="grid grid-cols-3 gap-4">
             <div className="text-center">
@@ -37,7 +40,7 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
                 {repoStats.pullRequests?.open || 0}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Ouvertes
+                {t('developers.open')}
               </div>
             </div>
             <div className="text-center">
@@ -45,7 +48,7 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
                 {repoStats.pullRequests?.merged || 0}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Fusionnées
+                {t('developers.merged')}
               </div>
             </div>
             <div className="text-center">
@@ -53,7 +56,7 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
                 {repoStats.pullRequests?.closed || 0}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Fermées
+                {t('developers.closed')}
               </div>
             </div>
           </div>
@@ -61,7 +64,7 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
 
         <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-            Issues
+            {t('developers.issues')}
           </h3>
           <div className="grid grid-cols-2 gap-4">
             <div className="text-center">
@@ -69,7 +72,7 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
                 {repoStats.issues?.open || 0}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Ouvertes
+                {t('developers.open')}
               </div>
             </div>
             <div className="text-center">
@@ -77,17 +80,17 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
                 {repoStats.issues?.closed || 0}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Fermées
+                {t('developers.closed')}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Contributions par mois */}
+      {/* Monthly contributions */}
       <div className="mb-8">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-          Contributions par mois
+          {t('developers.monthlyContributions')}
         </h3>
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
@@ -111,17 +114,17 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
                 dataKey="count"
                 fill="#3B82F6"
                 radius={[4, 4, 0, 0]}
-                name="Contributions"
+                name={t('developers.contributions')}
               />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      {/* Repos les plus étoilés */}
+      {/* Most starred repos */}
       <div className="mb-8">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-          Repositories les plus étoilés
+          {t('developers.mostStarredRepos')}
         </h3>
         <div className="space-y-4">
           {repoStats.mostStarredRepos?.map((repo) => (
@@ -155,32 +158,32 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
         </div>
       </div>
 
-      {/* Statistiques supplémentaires */}
+      {/* Additional stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-            Jour le plus productif
+            {t('developers.mostProductiveDay')}
           </h3>
           <div className="text-center">
             <div className="text-2xl font-bold text-blue-500">
               {contributionStats.mostProductiveDay?.day}
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400">
-              {contributionStats.mostProductiveDay?.contributions} contributions
+              {contributionStats.mostProductiveDay?.contributions} {t('developers.contributions')}
             </div>
           </div>
         </div>
 
         <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-            Moyenne quotidienne
+            {t('developers.dailyAverage')}
           </h3>
           <div className="text-center">
             <div className="text-2xl font-bold text-blue-500">
               {Math.round(contributionStats.averageContributionsPerDay || 0)}
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400">
-              contributions par jour
+              {t('developers.contributionsPerDay')}
             </div>
           </div>
         </div>
