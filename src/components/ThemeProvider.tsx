@@ -13,25 +13,40 @@ const ThemeContext = createContext<ThemeContextType>({
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark';
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      setTheme('dark');
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    // Vérifier si le thème est déjà enregistré dans localStorage
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme') as 'light' | 'dark';
+      if (savedTheme) {
+        return savedTheme;
+      }
     }
-  }, []);
+    return 'dark';
+  });
 
   useEffect(() => {
-    localStorage.setItem('theme', theme);
+    // Appliquer le thème au chargement initial
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
       document.documentElement.style.backgroundColor = '#000000';
     } else {
       document.documentElement.classList.remove('dark');
       document.documentElement.style.backgroundColor = '#ffffff';
+    }
+  }, []);
+
+  useEffect(() => {
+    // Sauvegarder le thème dans localStorage et l'appliquer
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', theme);
+      
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.style.backgroundColor = '#000000';
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.style.backgroundColor = '#ffffff';
+      }
     }
   }, [theme]);
 
