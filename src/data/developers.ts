@@ -37,4 +37,6 @@ export const developers: Developer[] = [
   { username: 'AntoinnetRjuan', name: 'Ratsarafara Jean Antoinnet' },
   { username: 'DMikaia', name: 'Daniel Mikaia' },
   { username: 'chan-stephane', name: 'Stéphane CHAN HIOU KONG' },
+  { username: 'DinohRatiarisandy', name: 'Ratiarisandy Dinoh' },
+  { username: 'baibsFar', name: 'Baibs FARARANOHARISON' },
 ]; 

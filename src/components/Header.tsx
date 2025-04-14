@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Github, Heart } from 'lucide-react';
+import { Menu, X, Sun, Moon, Github } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
+import { PayPalButton } from './PayPalButton';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation();
   const { theme, toggleTheme } = useTheme();
-
-  const menuItems = [
-    { path: '/', label: 'Accueil' },
-    { path: '/hero', label: 'Développeurs' },
-    { path: '/dashboard', label: 'Get Started' }
-  ];
+  const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -20,28 +15,44 @@ export const Header: React.FC = () => {
     <header className="bg-white dark:bg-gray-800 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <span className="text-xl font-bold text-gray-900 dark:text-white">
+          <div className="flex items-center">
+            <Link to="/" className="text-xl font-bold text-gray-900 dark:text-white">
               GitHub Stats
-            </span>
-          </Link>
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {menuItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  location.pathname === item.path
-                    ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link
+              to="/"
+              className={`text-sm font-medium transition-colors duration-200 ${
+                isActive('/')
+                  ? 'text-blue-600 dark:text-blue-400'
+                  : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+              }`}
+            >
+              Accueil
+            </Link>
+            <Link
+              to="/hero"
+              className={`text-sm font-medium transition-colors duration-200 ${
+                isActive('/hero')
+                  ? 'text-blue-600 dark:text-blue-400'
+                  : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+              }`}
+            >
+              Développeurs
+            </Link>
+            <Link
+              to="/dashboard"
+              className={`text-sm font-medium transition-colors duration-200 ${
+                isActive('/dashboard')
+                  ? 'text-blue-600 dark:text-blue-400'
+                  : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+              }`}
+            >
+              Dashboard
+            </Link>
           </nav>
 
           {/* Right side icons */}
@@ -55,15 +66,9 @@ export const Header: React.FC = () => {
             >
               <Github className="h-5 w-5" />
             </a>
-            <a
-              href="https://skrill.me/rq/Noharitiana%20Vonitiavina/2.99/EUR?key=85_zgXCvdMxrbeYhdUyd37bfZwP"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-gray-500 hover:text-red-500 dark:text-gray-300 dark:hover:text-red-400 transition-colors duration-200"
-              title="Faire un don"
-            >
-              <Heart className="h-5 w-5" />
-            </a>
+            <div className="p-2">
+              <PayPalButton />
+            </div>
             <button
               onClick={toggleTheme}
               className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
@@ -74,38 +79,57 @@ export const Header: React.FC = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex items-center gap-4">
+          <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {menuItems.map((item) => (
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1">
               <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => setIsMenuOpen(false)}
+                to="/"
                 className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  location.pathname === item.path
-                    ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  isActive('/')
+                    ? 'text-blue-600 dark:text-blue-400'
+                    : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
                 }`}
+                onClick={() => setIsMenuOpen(false)}
               >
-                {item.label}
+                Accueil
               </Link>
-            ))}
+              <Link
+                to="/hero"
+                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  isActive('/hero')
+                    ? 'text-blue-600 dark:text-blue-400'
+                    : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Développeurs
+              </Link>
+              <Link
+                to="/dashboard"
+                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  isActive('/dashboard')
+                    ? 'text-blue-600 dark:text-blue-400'
+                    : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Dashboard
+              </Link>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </header>
   );
 }; 
