@@ -56,11 +56,13 @@ export const Header: React.FC = () => {
             >
               {t('navigation.dashboard')}
             </Link>
+            <div className="flex items-center">
+              <LanguageSelector />
+            </div>
           </nav>
 
           {/* Right side icons */}
           <div className="flex items-center space-x-4">
-            <LanguageSelector />
             <a
               href="https://github.com/Tiavina22/dash"
               target="_blank"
