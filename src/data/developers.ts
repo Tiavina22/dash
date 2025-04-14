@@ -39,4 +39,10 @@ export const developers: Developer[] = [
   { username: 'chan-stephane', name: 'Stéphane CHAN HIOU KONG' },
   { username: 'DinohRatiarisandy', name: 'Ratiarisandy Dinoh' },
   { username: 'baibsFar', name: 'Baibs FARARANOHARISON' },
+  { username: 'AmazingTool777', name: 'Tolojanahary' },
+  { username: 'julkwel', name: 'Julien Rajerison' },
+  { username: 'Lova-Nasaina', name: 'Lova Nasaina' },
+  { username: 'heryTz', name: 'Hery Nirintsoa' },
+  { username: 'Elkamika', name: 'Michael Randrianantenaina' },
+
 ]; 
