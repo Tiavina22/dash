@@ -155,7 +155,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                     </div>
                   </div>
 
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-purple-500 dark:hover:border-purple-400 transition-all duration-300 hover:scale-[1.02]">
+                  {/* <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-purple-500 dark:hover:border-purple-400 transition-all duration-300 hover:scale-[1.02]">
                     <div className="flex items-center gap-2 mb-2">
                       <GitFork className="w-5 h-5 text-purple-500 dark:text-purple-400" />
                       <span className="font-semibold text-gray-700 dark:text-gray-300">Total Forks</span>
@@ -164,7 +164,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">{repoStats.forks}</p>
                       <span className="text-sm text-gray-500 dark:text-gray-400">forks</span>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
