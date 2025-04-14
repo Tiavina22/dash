@@ -1,6 +1,6 @@
 # GitDash
 
-![GitDash Preview](/capture/Tiavina22-stats.png)
+![GitDash Preview](/public/capture/Tiavina22-stats.png)
 
 GitDash est une application web moderne qui permet de visualiser vos statistiques GitHub de manière élégante et intuitive. Obtenez des insights détaillés sur vos contributions, les langages utilisés et bien plus encore.
 
