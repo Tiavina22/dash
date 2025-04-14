@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -12,8 +12,20 @@ import { SearchBar } from './components/SearchBar';
 import { GithubCard } from './components/GithubCard';
 import { DetailedStats } from './components/DetailedStats';
 import { useGithub } from './hooks/useGithub';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simuler un temps de chargement
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const exportAsImage = async (element: HTMLElement, imageFileName: string) => {
     try {
       // Créer un clone de la carte GitHub pour l'export
@@ -74,6 +86,10 @@ function App() {
       console.error('Erreur lors de l\'export de l\'image:', error);
     }
   };
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <ThemeProvider>
