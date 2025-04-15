@@ -2,72 +2,72 @@
 
 ![GitDash Preview](/public/capture/Tiavina22-stats.png)
 
-GitDash est une application web moderne qui permet de visualiser vos statistiques GitHub de manière élégante et intuitive. Obtenez des insights détaillés sur vos contributions, les langages utilisés et bien plus encore.
+GitDash is a modern web application that elegantly visualizes your GitHub statistics. Get detailed insights into your contributions, programming languages used, and much more.
 
-## ✨ Fonctionnalités
+## Features
 
-- 📊 Visualisation des statistiques GitHub en temps réel
-- 💻 Analyse des langages de programmation utilisés
-- ⭐ Statistiques des dépôts (étoiles, forks, contributions)
-- 📈 Suivi de l'activité et de la croissance
-- 🌙 Mode sombre et clair
-- 🚀 Interface moderne et réactive
+- Real-time GitHub statistics visualization
+- Analysis of programming languages used
+- Repository statistics (stars, forks, contributions)
+- Activity and growth tracking
+- Dark and light mode
+- Modern and responsive interface
 
-## 🚀 Installation
+## Installation
 
-1. Clonez le dépôt :
+1. Clone the repository:
 ```bash
 git clone https://github.com/Tiavina22/dash.git
 cd dash
 ```
 
-2. Installez les dépendances :
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Lancez l'application en mode développement :
+3. Launch the application in development mode:
 ```bash
 npm run dev
 ```
 
-4. Ouvrez [http://localhost:5173](http://localhost:5173) dans votre navigateur.
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## 🔧 Configuration
+## Configuration
 
-GitDash utilise l'API GitHub pour récupérer vos données. Aucune configuration supplémentaire n'est nécessaire - il suffit d'entrer votre nom d'utilisateur GitHub pour commencer.
+GitDash uses the GitHub API to fetch your data. No additional configuration is required - simply enter your GitHub username to get started.
 
-## 🛡️ Sécurité
+## Security
 
-GitDash ne stocke aucune donnée. L'application utilise uniquement l'API GitHub officielle pour afficher vos statistiques en temps réel. Vos données restent sécurisées et privées.
+GitDash does not store any data. The application only uses the official GitHub API to display your statistics in real-time. Your data remains secure and private.
 
-## 🤝 Contribution
+## Contributing
 
-Les contributions sont les bienvenues ! Voici comment contribuer :
+Contributions are welcome! Here's how to contribute:
 
-1. Fork le projet
-2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
-3. Committez vos changements (`git commit -m 'Add some AmazingFeature'`)
-4. Push vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrez une Pull Request
+1. Fork the project
+2. Create a branch for your feature (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📝 Licence
+## License
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## 🙏 Remerciements
+## Acknowledgments
 
-- [GitHub API](https://docs.github.com/en/rest) pour l'accès aux données
-- [React](https://reactjs.org/) pour l'interface utilisateur
-- [Tailwind CSS](https://tailwindcss.com/) pour le style
-- [Framer Motion](https://www.framer.com/motion/) pour les animations
+- [GitHub API](https://docs.github.com/en/rest) for data access
+- [React](https://reactjs.org/) for the user interface
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [Framer Motion](https://www.framer.com/motion/) for animations
 
-## 📞 Contact
+## Contact
 
-Pour toute question ou suggestion, n'hésitez pas à ouvrir une issue sur GitHub ou à contacter l'équipe de développement.
+For any questions or suggestions, feel free to open an issue on GitHub or contact the development team.
 
 ---
 
 <div align="center">
-  <sub>Construit avec ❤️ par l'équipe GitDash</sub>
+  <sub>Built with ❤️ by the GitDash Team</sub>
 </div> 
