@@ -47,4 +47,9 @@ export const developers: Developer[] = [
   { username: 'sandratraniaina', name: 'Sandratraniaina' },
   { username: 'KiadyNirina', name: 'Kiady' },
   { username: 'krishna2206', name: 'ANHY Krishna Narayana Fitiavana' },
+  { username: 'mgcodeur', name: 'Iharena Jimmy Raphaël' },
+  { username: 'jPrudence', name: 'RAVELONTSOA Jean Prudence' },
+  { username: 'mamyraoby', name: 'mamyraoby' },
+  { username: 'chrys-elrak', name: 'Chrys Rakotonimanana' },
+  { username: 'tiavina-mika', name: 'Tiavina Michael Ralainirina' },
 ]; 
