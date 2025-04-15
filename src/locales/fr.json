@@ -149,5 +149,32 @@
     "rateLimitExceeded": "Limite d'API dépassée. Veuillez réessayer plus tard.",
     "fetchError": "Erreur lors de la récupération des données GitHub",
     "compareError": "Erreur lors de la comparaison des utilisateurs"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "searchPlaceholder": "Entrez un nom d'utilisateur GitHub...",
+    "searchButton": "Rechercher",
+    "loading": "Chargement des données...",
+    "error": "Erreur lors du chargement des données",
+    "noData": "Aucune donnée disponible",
+    "stats": {
+      "repositories": "Dépôts",
+      "stars": "Étoiles",
+      "forks": "Forks",
+      "contributions": "Contributions",
+      "followers": "Abonnés",
+      "following": "Abonnements",
+      "accountAge": "Compte créé"
+    },
+    "languages": {
+      "title": "Langages utilisés",
+      "noData": "Aucun langage disponible"
+    },
+    "contributions": {
+      "title": "Contributions",
+      "lastYear": "Dernière année",
+      "lastMonth": "Dernier mois",
+      "lastWeek": "Dernière semaine"
+    }
   }
 } 

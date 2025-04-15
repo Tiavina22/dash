@@ -149,5 +149,32 @@
     "rateLimitExceeded": "API rate limit exceeded. Please try again later.",
     "fetchError": "Error fetching GitHub data",
     "compareError": "Error comparing users"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "searchPlaceholder": "Enter a GitHub username...",
+    "searchButton": "Search",
+    "loading": "Loading data...",
+    "error": "Error loading data",
+    "noData": "No data available",
+    "stats": {
+      "repositories": "Repositories",
+      "stars": "Stars",
+      "forks": "Forks",
+      "contributions": "Contributions",
+      "followers": "Followers",
+      "following": "Following",
+      "accountAge": "Account created"
+    },
+    "languages": {
+      "title": "Languages used",
+      "noData": "No languages available"
+    },
+    "contributions": {
+      "title": "Contributions",
+      "lastYear": "Last year",
+      "lastMonth": "Last month",
+      "lastWeek": "Last week"
+    }
   }
 } 
