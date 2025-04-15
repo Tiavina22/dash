@@ -47,4 +47,5 @@ export const developers: Developer[] = [
   { username: 'sandratraniaina', name: 'Sandratraniaina' },
   { username: 'KiadyNirina', name: 'Kiady' },
   { username: 'krishna2206', name: 'ANHY Krishna Narayana Fitiavana' },
+  { username: 'AshCript', name: 'RAKOTONDRABE As Manjaka Josvah' },
 ]; 
