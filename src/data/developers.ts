@@ -49,7 +49,7 @@ export const developers: Developer[] = [
   { username: 'krishna2206', name: 'ANHY Krishna Narayana Fitiavana' },
   { username: 'mgcodeur', name: 'Iharena Jimmy Raphaël' },
   { username: 'jPrudence', name: 'RAVELONTSOA Jean Prudence' },
-  { username: 'mamyraoby', name: 'mamyraoby' },
+  { username: 'mamyraoby', name: 'Mamy Raobelina' },
   { username: 'chrys-elrak', name: 'Chrys Rakotonimanana' },
   { username: 'tiavina-mika', name: 'Tiavina Michael Ralainirina' },
 ]; 
