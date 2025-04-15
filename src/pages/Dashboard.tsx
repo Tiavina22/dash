@@ -4,9 +4,10 @@ import { useGithub } from '../hooks/useGithub';
 import { SearchBar } from '../components/SearchBar';
 import { GithubCard } from '../components/GithubCard';
 import { DetailedStats } from '../components/DetailedStats';
-import { Download } from 'lucide-react';
+import { Download, GitCompare } from 'lucide-react';
 import { useTheme } from '../components/ThemeProvider';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 interface DashboardProps {
   initialUsername?: string;
@@ -28,6 +29,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ initialUsername = '' }) =>
 
   const { theme } = useTheme();
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (initialUsername) {
@@ -72,15 +74,26 @@ export const Dashboard: React.FC<DashboardProps> = ({ initialUsername = '' }) =>
           {t('dashboard.title')}
         </h1>
         
-        <SearchBar
-          username={username}
-          setUsername={setUsername}
-          onSearch={fetchGitHubData}
-          loading={loading}
-          error={error}
-          placeholder={t('dashboard.searchPlaceholder')}
-          buttonText={t('dashboard.searchButton')}
-        />
+        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+          <div className="flex-1">
+            <SearchBar
+              username={username}
+              setUsername={setUsername}
+              onSearch={fetchGitHubData}
+              loading={loading}
+              error={error}
+              placeholder={t('dashboard.searchPlaceholder')}
+              buttonText={t('dashboard.searchButton')}
+            />
+          </div>
+          <button
+            onClick={() => navigate('/compare')}
+            className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+          >
+            <GitCompare className="w-5 h-5" />
+            <span>{t('navigation.compare')}</span>
+          </button>
+        </div>
         
         {loading && (
           <div className="text-center py-8">

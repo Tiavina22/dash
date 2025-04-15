@@ -16,6 +16,7 @@ import LoadingScreen from './components/LoadingScreen';
 import LanguageSelector from './components/LanguageSelector';
 import { useTranslation } from 'react-i18next';
 import './styles/language-selector.css';
+import ComparePage from './pages/ComparePage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -105,6 +106,7 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/hero" element={<Hero />} />
               <Route path="/dashboard" element={<DashboardWithParams />} />
+              <Route path="/compare" element={<ComparePage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>

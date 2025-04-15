@@ -68,7 +68,8 @@
     "dashboard": "Dashboard",
     "hero": "Hero",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "compare": "Compare"
   },
   "footer": {
     "copyright": "©",
@@ -154,5 +155,23 @@
       "lastMonth": "Last month",
       "lastWeek": "Last week"
     }
+  },
+  "compareProfiles": "Compare GitHub Profiles",
+  "githubUsername": "GitHub Username",
+  "addProfile": "Add Profile",
+  "compare": "Compare",
+  "remove": "Remove",
+  "contributions": "Contributions",
+  "repositories": "Repositories",
+  "stars": "Stars",
+  "followers": "Followers",
+  "topLanguages": "Top Languages",
+  "loading": "Loading",
+  "errorFetchingData": "Error fetching data",
+  "errors": {
+    "userNotFound": "User not found",
+    "rateLimitExceeded": "API rate limit exceeded. Please try again later.",
+    "fetchError": "Error fetching GitHub data",
+    "compareError": "Error comparing users"
   }
 } 

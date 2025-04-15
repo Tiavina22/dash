@@ -68,7 +68,8 @@
     "dashboard": "Tableau de bord",
     "hero": "Héros",
     "about": "À propos",
-    "contact": "Contact"
+    "contact": "Contact",
+    "compare": "Comparer"
   },
   "footer": {
     "copyright": "©",
@@ -127,5 +128,24 @@
         "answer": "Vous pouvez voir vos contributions, les langages utilisés, les statistiques des dépôts, et bien plus encore."
       }
     }
+  },
+  "compareProfiles": "Comparer les profils",
+  "githubUsername": "Nom d'utilisateur GitHub",
+  "addProfile": "Ajouter un profil",
+  "compare": "Comparer",
+  "remove": "Supprimer",
+  "contributions": "Contributions",
+  "repositories": "Dépôts",
+  "stars": "Étoiles",
+  "followers": "Abonnés",
+  "topLanguages": "Langages principaux",
+  "compareGitHubProfiles": "Comparer les profils GitHub",
+  "loading": "Chargement",
+  "errorFetchingData": "Erreur lors de la récupération des données",
+  "errors": {
+    "userNotFound": "Utilisateur non trouvé",
+    "rateLimitExceeded": "Limite d'API dépassée. Veuillez réessayer plus tard.",
+    "fetchError": "Erreur lors de la récupération des données GitHub",
+    "compareError": "Erreur lors de la comparaison des utilisateurs"
   }
 } 
