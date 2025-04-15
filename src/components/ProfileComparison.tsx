@@ -25,7 +25,7 @@ const ProfileComparison: React.FC<ProfileComparisonProps> = ({ onCompare }) => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
       <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-        {t('compareProfiles')}
+        {t('compare.title')}
       </h2>
       <div className="space-y-4">
         {usernames.map((username, index) => (
@@ -34,7 +34,7 @@ const ProfileComparison: React.FC<ProfileComparisonProps> = ({ onCompare }) => {
               type="text"
               value={username}
               onChange={(e) => handleUsernameChange(index, e.target.value)}
-              placeholder={`${t('githubUsername')} ${index + 1}`}
+              placeholder={`${t('compare.username')} ${index + 1}`}
               className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
             />
             {index > 1 && (
@@ -45,7 +45,7 @@ const ProfileComparison: React.FC<ProfileComparisonProps> = ({ onCompare }) => {
                 }}
                 className="text-red-500 hover:text-red-700"
               >
-                {t('remove')}
+                {t('compare.remove')}
               </button>
             )}
           </div>
@@ -55,13 +55,13 @@ const ProfileComparison: React.FC<ProfileComparisonProps> = ({ onCompare }) => {
             onClick={() => setUsernames([...usernames, ''])}
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
           >
-            {t('addProfile')}
+            {t('compare.addProfile')}
           </button>
           <button
             onClick={handleCompare}
             className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors"
           >
-            {t('compare')}
+            {t('compare.compare')}
           </button>
         </div>
       </div>

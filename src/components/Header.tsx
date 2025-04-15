@@ -13,7 +13,6 @@ export const Header: React.FC = () => {
   const { t } = useTranslation();
 
   const isActive = (path: string) => location.pathname === path;
-  const isComparePage = location.pathname === '/compare';
 
   return (
     <header className="bg-white dark:bg-gray-800 shadow-sm">
@@ -63,29 +62,27 @@ export const Header: React.FC = () => {
           </nav>
 
           {/* Right side icons */}
-          {!isComparePage && (
-            <div className="flex items-center space-x-4">
-              <a
-                href="https://github.com/Tiavina22/dash"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
-                title={t('common.viewSource')}
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <div className="p-2">
-                <PayPalButton />
-              </div>
-              <button
-                onClick={toggleTheme}
-                className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
-                title={theme === 'dark' ? t('common.switchToLight') : t('common.switchToDark')}
-              >
-                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </button>
+          <div className="flex items-center space-x-4">
+            <a
+              href="https://github.com/Tiavina22/dash"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
+              title={t('common.viewSource')}
+            >
+              <Github className="h-5 w-5" />
+            </a>
+            <div className="p-2">
+              <PayPalButton />
             </div>
-          )}
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
+              title={theme === 'dark' ? t('common.switchToLight') : t('common.switchToDark')}
+            >
+              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </button>
+          </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">

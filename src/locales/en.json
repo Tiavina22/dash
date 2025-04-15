@@ -129,45 +129,21 @@
       }
     }
   },
-  "dashboard": {
-    "title": "Dashboard",
-    "searchPlaceholder": "Enter a GitHub username...",
-    "searchButton": "Search",
-    "loading": "Loading data...",
-    "error": "Error loading data",
-    "noData": "No data available",
-    "stats": {
-      "repositories": "Repositories",
-      "stars": "Stars",
-      "forks": "Forks",
-      "contributions": "Contributions",
-      "followers": "Followers",
-      "following": "Following",
-      "accountAge": "Account created"
-    },
-    "languages": {
-      "title": "Languages used",
-      "noData": "No languages available"
-    },
-    "contributions": {
-      "title": "Contributions",
-      "lastYear": "Last year",
-      "lastMonth": "Last month",
-      "lastWeek": "Last week"
-    }
+  "compare": {
+    "title": "Compare GitHub Profiles",
+    "username": "GitHub Username",
+    "addProfile": "Add Profile",
+    "compare": "Compare",
+    "remove": "Remove",
+    "contributions": "Contributions",
+    "repositories": "Repositories",
+    "stars": "Stars",
+    "followers": "Followers",
+    "topLanguages": "Top Languages",
+    "loading": "Loading",
+    "errorFetchingData": "Error fetching data",
+    "ranking": "Ranking"
   },
-  "compareProfiles": "Compare GitHub Profiles",
-  "githubUsername": "GitHub Username",
-  "addProfile": "Add Profile",
-  "compare": "Compare",
-  "remove": "Remove",
-  "contributions": "Contributions",
-  "repositories": "Repositories",
-  "stars": "Stars",
-  "followers": "Followers",
-  "topLanguages": "Top Languages",
-  "loading": "Loading",
-  "errorFetchingData": "Error fetching data",
   "errors": {
     "userNotFound": "User not found",
     "rateLimitExceeded": "API rate limit exceeded. Please try again later.",
