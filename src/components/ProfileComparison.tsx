@@ -29,9 +29,7 @@ const ProfileComparison: React.FC<ProfileComparisonProps> = ({ onCompare }) => {
   };
 
   const addProfile = () => {
-    if (usernames.length < 5) {
-      setUsernames([...usernames, '']);
-    }
+    setUsernames([...usernames, '']);
   };
 
   const removeProfile = (index: number) => {
@@ -49,8 +47,7 @@ const ProfileComparison: React.FC<ProfileComparisonProps> = ({ onCompare }) => {
         </h2>
         <button
           onClick={addProfile}
-          disabled={usernames.length >= 5}
-          className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
         >
           <Plus className="w-5 h-5 mr-2" />
           {t('compare.addProfile')}
@@ -95,12 +92,6 @@ const ProfileComparison: React.FC<ProfileComparisonProps> = ({ onCompare }) => {
           {t('compare.compare')}
         </button>
       </div>
-
-      {usernames.length >= 5 && (
-        <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 text-center">
-          {t('compare.maxProfiles')}
-        </p>
-      )}
     </div>
   );
 };

@@ -10,11 +10,13 @@ import {
   Users,
   GitCommit,
   Download,
+  GitBranch,
 } from 'lucide-react';
 import { GitHubUser, LanguageData, RepoStats, ContributionStats } from '../types/github';
 import { useTheme } from './ThemeProvider';
 import './GithubCard.css';
 import { useTranslation } from 'react-i18next';
+import SkillBadges from './SkillBadges';
 
 interface GithubCardProps {
   userData: GitHubUser;
@@ -168,7 +170,14 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                   </button>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">{userData.bio || 'No bio available'}</p>
-
+                <div className="mb-4">
+                  <SkillBadges
+                    languages={languages}
+                    stars={repoStats.stars}
+                    contributions={contributionStats.totalContributions}
+                    repositories={userData.public_repos}
+                  />
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:scale-[1.02]">
                     <div className="flex items-center gap-2 mb-2">

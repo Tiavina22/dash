@@ -157,6 +157,7 @@
     "loading": "Loading data...",
     "error": "Error loading data",
     "noData": "No data available",
+    "skills": "Skills & Achievements",
     "stats": {
       "repositories": "Repositories",
       "stars": "Stars",

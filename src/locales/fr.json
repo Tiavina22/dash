@@ -157,6 +157,7 @@
     "loading": "Chargement des données...",
     "error": "Erreur lors du chargement des données",
     "noData": "Aucune donnée disponible",
+    "skills": "Skills & Achievements",
     "stats": {
       "repositories": "Dépôts",
       "stars": "Étoiles",
