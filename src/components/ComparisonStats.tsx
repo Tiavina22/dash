@@ -2,6 +2,12 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Star, GitBranch, Users, Code, Calendar, Trophy, Award, Medal, Crown } from 'lucide-react';
 
+interface LanguageData {
+  name: string;
+  value: number;
+  color: string;
+}
+
 interface UserStats {
   username: string;
   avatar_url: string;
@@ -10,7 +16,7 @@ interface UserStats {
   stars: number;
   followers: number;
   following: number;
-  languages: { [key: string]: number };
+  languages: LanguageData[];
   created_at: string;
   bio: string;
   location: string;
@@ -28,11 +34,11 @@ const ComparisonStats: React.FC<ComparisonStatsProps> = ({ stats }) => {
     return new Date(dateString).toLocaleDateString();
   };
 
-  const calculateLanguagePercentages = (languages: { [key: string]: number }) => {
-    const total = Object.values(languages).reduce((sum, count) => sum + count, 0);
-    return Object.entries(languages).map(([language, count]) => ({
-      language,
-      percentage: ((count / total) * 100).toFixed(1)
+  const calculateLanguagePercentages = (languages: LanguageData[]) => {
+    const total = languages.reduce((sum, lang) => sum + lang.value, 0);
+    return languages.map(lang => ({
+      ...lang,
+      percentage: ((lang.value / total) * 100).toFixed(1)
     }));
   };
 
@@ -41,7 +47,7 @@ const ComparisonStats: React.FC<ComparisonStatsProps> = ({ stats }) => {
     const repositoryPoints = user.repositories * 10;
     const starPoints = user.stars * 2;
     const followerPoints = user.followers * 1;
-    const languagePoints = Object.keys(user.languages).length * 5;
+    const languagePoints = user.languages.length * 5;
     return Math.round(contributionPoints + repositoryPoints + starPoints + followerPoints + languagePoints);
   };
 
@@ -199,16 +205,20 @@ const ComparisonStats: React.FC<ComparisonStatsProps> = ({ stats }) => {
               </h4>
               <div className="space-y-2">
                 {calculateLanguagePercentages(user.languages)
-                  .sort((a, b) => parseFloat(b.percentage) - parseFloat(a.percentage))
-                  .slice(0, 5)
-                  .map(({ language, percentage }) => (
+                  .map(({ name, percentage, color }) => (
                     <div
-                      key={language}
+                      key={name}
                       className="flex justify-between items-center bg-gray-50 dark:bg-gray-700 p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
                     >
-                      <span className="text-gray-600 dark:text-gray-300">
-                        {language}
-                      </span>
+                      <div className="flex items-center">
+                        <div
+                          className="w-3 h-3 rounded-full mr-2"
+                          style={{ backgroundColor: color }}
+                        />
+                        <span className="text-gray-600 dark:text-gray-300">
+                          {name}
+                        </span>
+                      </div>
                       <span className="text-gray-900 dark:text-white font-medium">
                         {percentage}%
                       </span>

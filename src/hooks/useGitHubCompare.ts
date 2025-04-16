@@ -1,4 +1,11 @@
 import { useState } from 'react';
+import { graphql } from '@octokit/graphql';
+
+interface LanguageData {
+  name: string;
+  value: number;
+  color: string;
+}
 
 interface UserStats {
   username: string;
@@ -8,7 +15,7 @@ interface UserStats {
   stars: number;
   followers: number;
   following: number;
-  languages: { [key: string]: number };
+  languages: LanguageData[];
   created_at: string;
   bio: string;
   location: string;
@@ -36,52 +43,91 @@ export const useGitHubCompare = () => {
 
   const fetchUserStats = async (username: string): Promise<UserStats> => {
     try {
-      // Fetch user data
-      const userResponse = await fetch(`https://api.github.com/users/${username}`);
-      if (!userResponse.ok) {
-        throw { status: userResponse.status };
-      }
-      const userData = await userResponse.json();
-
-      // Fetch user repositories
-      const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
-      if (!reposResponse.ok) {
-        throw { status: reposResponse.status };
-      }
-      const reposData = await reposResponse.json();
-
-      // Calculate total stars
-      const totalStars = reposData.reduce((acc: number, repo: any) => acc + repo.stargazers_count, 0);
-
-      // Fetch user contributions
-      const contributionsResponse = await fetch(`https://api.github.com/users/${username}/events`);
-      if (!contributionsResponse.ok) {
-        throw { status: contributionsResponse.status };
-      }
-      const contributionsData = await contributionsResponse.json();
-      const contributions = contributionsData.length;
-
-      // Calculate language usage
-      const languages: { [key: string]: number } = {};
-      for (const repo of reposData) {
-        if (repo.language) {
-          languages[repo.language] = (languages[repo.language] || 0) + 1;
+      const query = `
+        query($username: String!) {
+          user(login: $username) {
+            login
+            avatarUrl
+            bio
+            company
+            location
+            createdAt
+            followers {
+              totalCount
+            }
+            following {
+              totalCount
+            }
+            repositories(first: 100, orderBy: {field: STARGAZERS, direction: DESC}) {
+              totalCount
+              nodes {
+                stargazerCount
+                languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
+                  edges {
+                    size
+                    node {
+                      name
+                      color
+                    }
+                  }
+                }
+              }
+            }
+            contributionsCollection {
+              contributionCalendar {
+                totalContributions
+              }
+            }
+          }
         }
-      }
+      `;
+
+      const response: any = await graphql(query, {
+        username,
+        headers: {
+          authorization: `bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
+        },
+      });
+
+      const user = response.user;
+      const totalStars = user.repositories.nodes.reduce(
+        (acc: number, repo: any) => acc + repo.stargazerCount,
+        0
+      );
+
+      // Calculate language usage with colors
+      const languagesWithColors = user.repositories.nodes
+        .flatMap((repo: any) => repo.languages.edges)
+        .reduce((acc: any, { node, size }: any) => {
+          if (!acc[node.name]) {
+            acc[node.name] = { value: 0, color: node.color };
+          }
+          acc[node.name].value += size;
+          return acc;
+        }, {});
+
+      const languages = Object.entries(languagesWithColors)
+        .map(([name, data]: [string, any]) => ({
+          name,
+          value: data.value,
+          color: data.color
+        }))
+        .sort((a, b) => b.value - a.value)
+        .slice(0, 6);
 
       return {
-        username: userData.login,
-        avatar_url: userData.avatar_url,
-        contributions,
-        repositories: userData.public_repos,
+        username: user.login,
+        avatar_url: user.avatarUrl,
+        contributions: user.contributionsCollection.contributionCalendar.totalContributions,
+        repositories: user.repositories.totalCount,
         stars: totalStars,
-        followers: userData.followers,
-        following: userData.following,
+        followers: user.followers.totalCount,
+        following: user.following.totalCount,
         languages,
-        created_at: userData.created_at,
-        bio: userData.bio || '',
-        location: userData.location || '',
-        company: userData.company || '',
+        created_at: user.createdAt,
+        bio: user.bio || '',
+        location: user.location || '',
+        company: user.company || '',
       };
     } catch (err) {
       const githubError = handleGitHubError(err);
