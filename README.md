@@ -1,17 +1,33 @@
 # GitDash
 
-![GitDash Preview](/public/capture/Tiavina22-stats.png)
-
 GitDash is a modern web application that elegantly visualizes your GitHub statistics. Get detailed insights into your contributions, programming languages used, and much more.
 
-## Features
+![GitDash Preview](/public/capture/Tiavina22-stats.png)
 
-- Real-time GitHub statistics visualization
-- Analysis of programming languages used
-- Repository statistics (stars, forks, contributions)
-- Activity and growth tracking
-- Dark and light mode
-- Modern and responsive interface
+## ✨ Features
+
+- **Custom Dashboard**: Visualize your GitHub statistics in an elegant and modern way
+- **Detailed Statistics**:
+  - Total repositories, stars, forks, and contributions
+  - Followers and following tracking
+  - Programming language analysis
+  - Contribution history (year, month, week)
+  - GitHub account age
+- **Profile Comparison**:
+  - Compare multiple GitHub profiles side by side
+  - Comparative statistics analysis
+  - Point-based ranking system
+  - Language usage visualization per user
+- **Modern & Intuitive Interface**:
+  - Dark/light mode
+  - Responsive design
+  - Smooth animations
+- **Image Export**: Capture and share your statistics
+- **Multilingual**: French and English support
+- **No Signup Required**: Just use your GitHub username
+- **Security**: No data stored on our servers
+- **Performance**: Fast and responsive interface
+- **Open Source**: Code available and modifiable
 
 ## Installation
 
