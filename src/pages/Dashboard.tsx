@@ -84,6 +84,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ initialUsername = '' }) =>
               error={error}
               placeholder={t('dashboard.searchPlaceholder')}
               buttonText={t('dashboard.searchButton')}
+              autoSearch={!!initialUsername}
             />
           </div>
           <button

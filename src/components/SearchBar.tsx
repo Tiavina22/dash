@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ interface SearchBarProps {
   error: string;
   placeholder?: string;
   buttonText?: string;
+  autoSearch?: boolean;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
@@ -19,29 +20,52 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   loading,
   error,
   placeholder = 'Enter a GitHub username...',
-  buttonText = 'Search'
+  buttonText = 'Search',
+  autoSearch = false
 }) => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const initialRender = useRef(true);
+  const [debouncedUsername, setDebouncedUsername] = useState(username);
+  const timeoutRef = useRef<number>();
 
   useEffect(() => {
     const urlUsername = searchParams.get('username');
     if (urlUsername) {
       setUsername(urlUsername);
+      setDebouncedUsername(urlUsername);
+      onSearch();
     }
   }, [searchParams]);
 
   useEffect(() => {
-    if (username && initialRender.current) {
+    if (autoSearch && username && initialRender.current) {
       onSearch();
       initialRender.current = false;
     }
-  }, [username]);
+  }, [username, autoSearch]);
+
+  useEffect(() => {
+    if (!autoSearch && !searchParams.get('username')) {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+
+      timeoutRef.current = window.setTimeout(() => {
+        setDebouncedUsername(username);
+      }, 500);
+
+      return () => {
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+      };
+    }
+  }, [username, autoSearch, searchParams]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username.trim()) {
+    if (username.trim() && username.length >= 3) {
       onSearch();
     }
   };
@@ -63,7 +87,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           </div>
           <button
             type="submit"
-            disabled={loading || !username.trim()}
+            disabled={loading || !username.trim() || username.length < 3}
             className="absolute right-0 inset-y-0 px-4 py-2 text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-r-lg transition-colors duration-200"
           >
             {loading ? (
