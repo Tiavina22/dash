@@ -176,6 +176,17 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                     stars={repoStats.stars}
                     contributions={contributionStats.totalContributions}
                     repositories={userData.public_repos}
+                    followers={userData.followers}
+                    pullRequests={{
+                      open: repoStats.pullRequests?.open || 0,
+                      closed: repoStats.pullRequests?.closed || 0,
+                      merged: repoStats.pullRequests?.merged || 0
+                    }}
+                    issues={{
+                      open: repoStats.issues?.open || 0,
+                      closed: repoStats.issues?.closed || 0
+                    }}
+                    accountAge={calculateAccountAge(userData.created_at)}
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
