@@ -4,7 +4,7 @@ GitDash is a modern web application that elegantly visualizes your GitHub statis
 
 ![GitDash Preview](/public/capture/Tiavina22-stats.png)
 
-## ✨ Features
+## Features
 
 - **Custom Dashboard**: Visualize your GitHub statistics in an elegant and modern way
 - **Detailed Statistics**:
