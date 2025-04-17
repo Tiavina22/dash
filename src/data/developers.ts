@@ -9,7 +9,7 @@ export const developers: Developer[] = [
   { username: 'Rohan29-AN', name: 'Tafita ANDONIAINA' },
   { username: 'RajaRakoto', name: 'Raja Rakotonirina' },
   { username: 'Tiavina22', name: 'Tiavina Ramilison' },
-  { username: 'branGitfox', name: 'Brandon Fidelin Ravomanana' },
+  // { username: 'branGitfox', name: 'Brandon Fidelin Ravomanana' },
   { username: 'AmigosKazz', name: 'Kaznarah Andrinarivo' },
   { username: 'KiritoEM', name: 'Loick Emadison' },
   { username: 'tglRazaf', name: 'Stephano Razafindramena' },
@@ -34,7 +34,7 @@ export const developers: Developer[] = [
   { username: 'AmbiNtsoah', name: 'Maminirina' },
   { username: 'rmanantsoa', name: 'Tianamanantsoa' },
   { username: 'RivoLink', name: 'Rivo Link' },
-  { username: 'AntoinnetRjuan', name: 'Ratsarafara Jean Antoinnet' },
+  // { username: 'AntoinnetRjuan', name: 'Ratsarafara Jean Antoinnet' },
   { username: 'DMikaia', name: 'Daniel Mikaia' },
   { username: 'chan-stephane', name: 'Stéphane CHAN HIOU KONG' },
   { username: 'DinohRatiarisandy', name: 'Ratiarisandy Dinoh' },
@@ -53,4 +53,5 @@ export const developers: Developer[] = [
   { username: 'chrys-elrak', name: 'Chrys Rakotonimanana' },
   { username: 'tiavina-mika', name: 'Tiavina Michael Ralainirina'},
   { username: 'AshCript', name: 'RAKOTONDRABE As Manjaka Josvah' },
+  { username: 'faanrm', name: 'Faniloniaina Ramilison' },
 ]; 
