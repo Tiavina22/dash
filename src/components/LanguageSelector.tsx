@@ -26,7 +26,7 @@ const LanguageSelector: React.FC = () => {
 
   const languages = [
     { code: 'fr', name: t('common.french'), flag: '🇫🇷' },
-    { code: 'en', name: t('common.english'), flag: 'ENG' }
+    { code: 'en', name: t('common.english'), flag: 'GB' }
   ];
 
   return (
