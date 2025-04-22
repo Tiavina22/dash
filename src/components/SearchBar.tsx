@@ -89,6 +89,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             <Search className="h-5 w-5 text-gray-400" />
           </div>
           <div className="absolute right-0 inset-y-0 flex items-center pr-2">
+            {/* {onTokenChange && <GitHubTokenInput onTokenChange={onTokenChange} />} */}
             <button
               type="submit"
               disabled={loading || !username.trim() || username.length < 3}
