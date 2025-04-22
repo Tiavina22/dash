@@ -27,6 +27,7 @@ export const useGithub = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [githubToken, setGithubToken] = useState('');
 
   const calculateAccountAge = (createdAt: string) => {
     const created = new Date(createdAt);
@@ -147,11 +148,16 @@ export const useGithub = () => {
         }
       `;
 
+      const headers: any = {};
+      if (githubToken) {
+        headers.authorization = `bearer ${githubToken}`;
+      } else if (import.meta.env.VITE_GITHUB_TOKEN) {
+        headers.authorization = `bearer ${import.meta.env.VITE_GITHUB_TOKEN}`;
+      }
+
       const response: any = await graphql(query, {
         username,
-        headers: {
-          authorization: `bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-        },
+        headers,
       });
 
       // Calcul des statistiques de base
@@ -246,24 +252,24 @@ export const useGithub = () => {
 
       // Mise à jour des langages avec leurs couleurs
       const languagesWithColors = response.user.repositories.nodes
-        .flatMap((repo: any) => repo.languages.edges)
-        .reduce((acc: any, { node, size }: any) => {
-          if (!acc[node.name]) {
-            acc[node.name] = { value: 0, color: node.color };
-          }
-          acc[node.name].value += size;
-          return acc;
-        }, {});
+      .flatMap((repo: any) => repo.languages.edges) // récupère tous les langages des repos
+      .reduce((acc: any, { node, size }: any) => { // additionne les tailles des langages
+        if (!acc[node.name]) {
+          acc[node.name] = { value: 0, color: node.color };
+        }
+        acc[node.name].value += size;
+        return acc;
+      }, {});
 
       setLanguages(
-        Object.entries(languagesWithColors)
-          .map(([name, data]: [string, any]) => ({
-            name,
-            value: data.value,
-            color: data.color
-          }))
-          .sort((a, b) => b.value - a.value)
-          .slice(0, 6)
+      Object.entries(languagesWithColors)
+        .map(([name, data]: [string, any]) => ({
+          name,
+          value: data.value,
+          color: data.color
+        }))
+        .sort((a, b) => b.value - a.value) // trie par la taille (value)
+        .slice(0, 6) // limite aux 6 premiers langages
       );
 
     } catch (error) {
@@ -277,8 +283,14 @@ export const useGithub = () => {
     setLoading(true);
     setError('');
     try {
+      const headers: any = {};
+      if (githubToken) {
+        headers.Authorization = `token ${githubToken}`;
+      }
+
       const userResponse = await axios.get(
-        `https://api.github.com/users/${username}`
+        `https://api.github.com/users/${username}`,
+        { headers }
       );
       setUserData(userResponse.data);
 
@@ -300,5 +312,7 @@ export const useGithub = () => {
     error,
     calculateAccountAge,
     fetchGitHubData,
+    githubToken,
+    setGithubToken,
   };
 }; 

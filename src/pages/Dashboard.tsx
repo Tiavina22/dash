@@ -25,6 +25,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ initialUsername = '' }) =>
     error,
     calculateAccountAge,
     fetchGitHubData,
+    githubToken,
+    setGithubToken,
   } = useGithub();
 
   const { theme } = useTheme();
@@ -85,6 +87,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ initialUsername = '' }) =>
               placeholder={t('dashboard.searchPlaceholder')}
               buttonText={t('dashboard.searchButton')}
               autoSearch={!!initialUsername}
+              onTokenChange={setGithubToken}
             />
           </div>
           <button
@@ -148,7 +151,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ initialUsername = '' }) =>
               <DetailedStats
                 repoStats={repoStats}
                 contributionStats={contributionStats}
-               
               />
             </div>
           </>

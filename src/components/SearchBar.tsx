@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import { GitHubTokenInput } from './GitHubTokenInput';
 
 interface SearchBarProps {
   username: string;
@@ -11,6 +12,7 @@ interface SearchBarProps {
   placeholder?: string;
   buttonText?: string;
   autoSearch?: boolean;
+  onTokenChange?: (token: string) => void;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
@@ -21,7 +23,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   error,
   placeholder = 'Enter a GitHub username...',
   buttonText = 'Search',
-  autoSearch = false
+  autoSearch = false,
+  onTokenChange
 }) => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
@@ -85,23 +88,26 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
           </div>
-          <button
-            type="submit"
-            disabled={loading || !username.trim() || username.length < 3}
-            className="absolute right-0 inset-y-0 px-4 py-2 text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-r-lg transition-colors duration-200"
-          >
-            {loading ? (
-              <div className="flex items-center">
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                Chargement...
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Search className="w-5 h-5" />
-                <span>{buttonText}</span>
-              </div>
-            )}
-          </button>
+          <div className="absolute right-0 inset-y-0 flex items-center pr-2">
+            {onTokenChange && <GitHubTokenInput onTokenChange={onTokenChange} />}
+            <button
+              type="submit"
+              disabled={loading || !username.trim() || username.length < 3}
+              className="ml-2 px-4 py-2 text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors duration-200"
+            >
+              {loading ? (
+                <div className="flex items-center">
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                  Chargement...
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Search className="w-5 h-5" />
+                  <span>{buttonText}</span>
+                </div>
+              )}
+            </button>
+          </div>
         </div>
         {error && (
           <p className="mt-2 text-sm text-red-600 dark:text-red-400">{error}</p>

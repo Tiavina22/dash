@@ -176,6 +176,9 @@
       "lastYear": "Dernière année",
       "lastMonth": "Dernier mois",
       "lastWeek": "Dernière semaine"
-    }
+    },
+    "githubToken": "Token GitHub",
+    "githubTokenDescription": "Entrez votre token GitHub personnel pour accéder à vos statistiques privées. Ce token est stocké localement et n'est pas envoyé à nos serveurs.",
+    "githubTokenPlaceholder": "ghp_..."
   }
 } 
