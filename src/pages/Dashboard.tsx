@@ -87,7 +87,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ initialUsername = '' }) =>
               placeholder={t('dashboard.searchPlaceholder')}
               buttonText={t('dashboard.searchButton')}
               autoSearch={!!initialUsername}
-              onTokenChange={setGithubToken}
             />
           </div>
           <button
