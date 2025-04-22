@@ -78,6 +78,10 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [Tailwind CSS](https://tailwindcss.com/) for styling
 - [Framer Motion](https://www.framer.com/motion/) for animations
 
+## TODO
+
+
+
 ## Contact
 
 For any questions or suggestions, feel free to open an issue on GitHub or contact the development team.

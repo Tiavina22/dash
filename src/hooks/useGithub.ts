@@ -3,6 +3,7 @@ import axios from 'axios';
 import { graphql } from '@octokit/graphql';
 import { GitHubUser, LanguageData, RepoStats, ContributionStats } from '../types/github';
 
+// This hook fetches GitHub user data and calculates various statistics
 export const useGithub = () => {
   const [username, setUsername] = useState('');
   const [userData, setUserData] = useState<GitHubUser | null>(null);
