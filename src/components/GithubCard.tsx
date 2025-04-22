@@ -210,6 +210,10 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">{userData.followers}</p>
                       <span className="text-sm text-gray-500 dark:text-gray-400">{t('developers.followers')}</span>
                     </div>
+                    <div className="flex items-baseline gap-1">
+                      <p className="text-2xl font-bold text-gray-900 dark:text-white">{userData.following}</p>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">{t('developers.following')}</span>
+                    </div>
                   </div>
 
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-yellow-500 dark:hover:border-yellow-400 transition-all duration-300 hover:scale-[1.02]">

@@ -293,6 +293,7 @@ export const useGithub = () => {
         `https://api.github.com/users/${username}`,
         { headers }
       );
+      console.log('userResponse', userResponse.data);
       setUserData(userResponse.data);
 
       await fetchDetailedContributionData(username);
