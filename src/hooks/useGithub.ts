@@ -279,7 +279,9 @@ export const useGithub = () => {
   };
 
   const fetchGitHubData = async () => {
-    if (!username) return;
+    const trimmedUsername = username.trim(); 
+
+    if (!trimmedUsername) return;
 
     setLoading(true);
     setError('');
@@ -290,13 +292,13 @@ export const useGithub = () => {
       }
 
       const userResponse = await axios.get(
-        `https://api.github.com/users/${username}`,
+        `https://api.github.com/users/${trimmedUsername}`,
         { headers }
       );
       console.log('userResponse', userResponse.data);
       setUserData(userResponse.data);
 
-      await fetchDetailedContributionData(username);
+      await fetchDetailedContributionData(trimmedUsername);
     } catch (err) {
       setError('Utilisateur non trouvé ou erreur de l\'API GitHub');
     }
