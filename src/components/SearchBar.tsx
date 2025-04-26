@@ -80,7 +80,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           <input
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value.trim())}
             placeholder={placeholder}
             className="w-full px-4 py-3 pl-12 pr-32 text-gray-900 dark:text-white bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent"
             disabled={loading}
