@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 import {
   PieChart,
   Pie,
@@ -6,9 +6,9 @@ import {
   ResponsiveContainer,
   Tooltip,
   Legend,
-} from "recharts";
-import GitHubCalendar from "react-github-calendar";
-import html2canvas from "html2canvas";
+} from 'recharts';
+import GitHubCalendar from 'react-github-calendar';
+import html2canvas from 'html2canvas';
 import {
   Star,
   GitFork,
@@ -18,17 +18,17 @@ import {
   GitCommit,
   Download,
   GitBranch,
-} from "lucide-react";
+} from 'lucide-react';
 import {
   GitHubUser,
   LanguageData,
   RepoStats,
   ContributionStats,
-} from "../types/github";
-import { useTheme } from "./ThemeProvider";
-import "./GithubCard.css";
-import { useTranslation } from "react-i18next";
-import SkillBadges from "./SkillBadges";
+} from '../types/github';
+import { useTheme } from './ThemeProvider';
+import './GithubCard.css';
+import { useTranslation } from 'react-i18next';
+import SkillBadges from './SkillBadges';
 
 interface GithubCardProps {
   userData: GitHubUser;
@@ -60,12 +60,12 @@ interface GithubCardProps {
 }
 
 const COLORS = [
-  "#3B82F6", // blue-500
-  "#10B981", // emerald-500
-  "#F59E0B", // amber-500
-  "#EF4444", // red-500
-  "#8B5CF6", // violet-500
-  "#EC4899", // pink-500
+  '#3B82F6', // blue-500
+  '#10B981', // emerald-500
+  '#F59E0B', // amber-500
+  '#EF4444', // red-500
+  '#8B5CF6', // violet-500
+  '#EC4899', // pink-500
 ];
 
 export const GithubCard: React.FC<GithubCardProps> = ({
@@ -82,23 +82,23 @@ export const GithubCard: React.FC<GithubCardProps> = ({
 
   const defaultTranslations = {
     stats: {
-      repositories: "Repositories",
-      stars: "Stars",
-      forks: "Forks",
-      contributions: "Contributions",
-      followers: "Followers",
-      following: "",
-      accountAge: "Account created",
+      repositories: 'Repositories',
+      stars: 'Stars',
+      forks: 'Forks',
+      contributions: 'Contributions',
+      followers: 'Followers',
+      following: '',
+      accountAge: 'Account created',
     },
     languages: {
-      title: "Languages used",
-      noData: "No languages available",
+      title: 'Languages used',
+      noData: 'No languages available',
     },
     contributions: {
-      title: "Contributions",
-      lastYear: "Last year",
-      lastMonth: "Last month",
-      lastWeek: "Last week",
+      title: 'Contributions',
+      lastYear: 'Last year',
+      lastMonth: 'Last month',
+      lastWeek: 'Last week',
     },
   };
 
@@ -106,26 +106,26 @@ export const GithubCard: React.FC<GithubCardProps> = ({
 
   const exportAsImage = async (element: HTMLElement, imageFileName: string) => {
     try {
-      const exportButton = element.querySelector(".export-button");
+      const exportButton = element.querySelector('.export-button');
       if (exportButton) {
-        exportButton.classList.add("hidden");
+        exportButton.classList.add('hidden');
       }
 
       const canvas = await html2canvas(element, {
         scale: 2,
-        backgroundColor: theme === "dark" ? "#1a1a1a" : "#ffffff",
+        backgroundColor: theme === 'dark' ? '#1a1a1a' : '#ffffff',
         logging: false,
         useCORS: true,
       });
 
       // Réafficher le bouton d'export
       if (exportButton) {
-        exportButton.classList.remove("hidden");
+        exportButton.classList.remove('hidden');
       }
 
-      const link = document.createElement("a");
+      const link = document.createElement('a');
       link.download = `${imageFileName}.png`;
-      link.href = canvas.toDataURL("image/png", 1.0);
+      link.href = canvas.toDataURL('image/png', 1.0);
       link.click();
     } catch (error) {
       console.error("Erreur lors de l'export de l'image:", error);
@@ -138,7 +138,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
     percentage:
       totalLanguages > 0
         ? ((lang.value / totalLanguages) * 100).toFixed(1)
-        : "0.0",
+        : '0.0',
   }));
 
   return (
@@ -163,7 +163,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                 </div>
                 <div className="mt-4 bg-gray-50 dark:bg-gray-700 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {t("developers.memberSince")}
+                    {t('developers.memberSince')}
                   </p>
                   <div className="flex items-center justify-center gap-2 mt-1">
                     <Calendar className="w-4 h-4 text-blue-500 dark:text-blue-400" />
@@ -185,19 +185,19 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                     onClick={() =>
                       exportAsImage(
                         cardRef.current!,
-                        `${userData?.login || "github"}-stats`
+                        `${userData?.login || 'github'}-stats`
                       )
                     }
                     className="export-button flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                    title={t("developers.exportPng")}
+                    title={t('developers.exportPng')}
                   >
                     <Download className="w-5 h-5" />
-                    <span>{t("developers.exportPng")}</span>
+                    <span>{t('developers.exportPng')}</span>
                   </button>
                 </div>
 
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  {userData.bio || t("developers.noBio")}
+                  {userData.bio || t('developers.noBio')}
                 </p>
 
                 <div className="mb-4">
@@ -214,7 +214,12 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                         merged: 0,
                       }
                     }
-                    issues={repoStats.issues || { open: 0, closed: 0 }}
+                    issues={
+                      repoStats.issues || {
+                        open: 0,
+                        closed: 0,
+                      }
+                    }
                     accountAge={calculateAccountAge(userData.created_at)}
                   />
                 </div>
@@ -224,7 +229,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                     <div className="flex items-center gap-2 mb-2">
                       <Code className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                       <span className="font-semibold text-gray-700 dark:text-gray-300">
-                        {t("developers.publicRepos")}
+                        {t('developers.publicRepos')}
                       </span>
                     </div>
                     <div className="flex items-baseline gap-1">
@@ -232,7 +237,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                         {userData.public_repos}
                       </p>
                       <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {t("developers.publicRepos")}
+                        {t('developers.publicRepos')}
                       </span>
                     </div>
                   </div>
@@ -241,7 +246,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                     <div className="flex items-center gap-2 mb-2">
                       <Users className="w-5 h-5 text-green-500 dark:text-green-400" />
                       <span className="font-semibold text-gray-700 dark:text-gray-300">
-                        {t("developers.followers")}
+                        {t('developers.followers')}
                       </span>
                     </div>
                     <div className="flex items-baseline gap-1">
@@ -249,16 +254,16 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                         {userData.followers}
                       </p>
                       <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {t("developers.followers")}
+                        {t('developers.followers')}
                       </span>
                     </div>
                     <div className="flex items-baseline gap-1 mt-1">
-                      {" "}
+                      {' '}
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">
                         {userData.following}
                       </p>
                       <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {t("developers.following")}
+                        {t('developers.following')}
                       </span>
                     </div>
                   </div>
@@ -267,7 +272,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                     <div className="flex items-center gap-2 mb-2">
                       <Star className="w-5 h-5 text-yellow-500 dark:text-yellow-400" />
                       <span className="font-semibold text-gray-700 dark:text-gray-300">
-                        {t("developers.totalStars")}
+                        {t('developers.totalStars')}
                       </span>
                     </div>
                     <div className="flex items-baseline gap-1">
@@ -275,7 +280,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                         {repoStats.stars}
                       </p>
                       <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {t("developers.totalStars")}
+                        {t('developers.totalStars')}
                       </span>
                     </div>
                   </div>
@@ -297,7 +302,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
                     <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">
-                      {t("developers.languagesUsed")}
+                      {t('developers.languagesUsed')}
                     </h3>
                     {languagesWithPercentage.length > 0 ? (
                       <>
@@ -329,11 +334,11 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                                 ) => [`${props.payload.percentage}%`, name]}
                                 contentStyle={{
                                   backgroundColor:
-                                    theme === "dark" ? "#1F2937" : "#FFFFFF",
+                                    theme === 'dark' ? '#1F2937' : '#FFFFFF',
                                   border: `1px solid ${
-                                    theme === "dark" ? "#374151" : "#E5E7EB"
+                                    theme === 'dark' ? '#374151' : '#E5E7EB'
                                   }`,
-                                  borderRadius: "0.5rem",
+                                  borderRadius: '0.5rem',
                                 }}
                               />
                               <Legend
@@ -342,16 +347,17 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                                 verticalAlign="middle"
                                 iconSize={10}
                                 wrapperStyle={{
-                                  paddingLeft: "10px",
-                                  maxHeight: "280px",
-                                  overflowY: "auto",
+                                  paddingLeft: '10px',
+                                  maxHeight: '280px',
+                                  overflowY: 'auto',
                                 }}
                                 formatter={(value: string, entry: any) => (
                                   <span
                                     className="text-sm text-gray-700 dark:text-gray-300 truncate"
                                     title={`${value} (${entry.payload.percentage}%)`}
                                   >
-                                    {value} ({entry.payload.percentage}%)
+                                    {value} ({entry.payload.percentage}
+                                    %)
                                   </span>
                                 )}
                               />
@@ -372,21 +378,21 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                       </>
                     ) : (
                       <p className="text-gray-500 dark:text-gray-400 text-center py-10">
-                        {t("developers.noLanguages")}
+                        {t('developers.noLanguages')}
                       </p>
                     )}
                   </div>
 
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
                     <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">
-                      {t("developers.contributions")}
+                      {t('developers.contributions')}
                     </h3>
                     <div className="space-y-4">
                       <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:scale-[1.02]">
                         <div className="flex items-center gap-2">
                           <GitCommit className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                            {t("developers.totalContributions")}
+                            {t('developers.totalContributions')}
                           </span>
                         </div>
                         <div className="flex items-baseline gap-1 mt-1">
@@ -394,7 +400,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                             {contributionStats.totalContributions}
                           </p>
                           <span className="text-xs text-gray-500 dark:text-gray-400">
-                            {t("developers.totalContributions")}
+                            {t('developers.totalContributions')}
                           </span>
                         </div>
                       </div>
@@ -403,7 +409,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                         <div className="flex items-center gap-2">
                           <GitCommit className="w-4 h-4 text-green-500 dark:text-green-400" />
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                            {t("developers.contributionsLastYear")}
+                            {t('developers.contributionsLastYear')}
                           </span>
                         </div>
                         <div className="flex items-baseline gap-1 mt-1">
@@ -411,7 +417,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                             {contributionStats.contributionsLastYear}
                           </p>
                           <span className="text-xs text-gray-500 dark:text-gray-400">
-                            {t("developers.contributionsLastYear")}
+                            {t('developers.contributionsLastYear')}
                           </span>
                         </div>
                       </div>
@@ -420,7 +426,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                         <div className="flex items-center gap-2">
                           <GitCommit className="w-4 h-4 text-yellow-500 dark:text-yellow-400" />
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                            {t("developers.currentStreak")}
+                            {t('developers.currentStreak')}
                           </span>
                         </div>
                         <div className="flex items-baseline gap-1 mt-1">
@@ -428,7 +434,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                             {contributionStats.currentStreak}
                           </p>
                           <span className="text-xs text-gray-500 dark:text-gray-400">
-                            {t("developers.days", {
+                            {t('developers.days', {
                               count: contributionStats.currentStreak,
                             })}
                           </span>
@@ -439,7 +445,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                         <div className="flex items-center gap-2">
                           <GitCommit className="w-4 h-4 text-red-500 dark:text-red-400" />
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                            {t("developers.maxStreak")}
+                            {t('developers.maxStreak')}
                           </span>
                         </div>
                         <div className="flex items-baseline gap-1 mt-1">
@@ -447,8 +453,8 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                             {contributionStats.maxStreak}
                           </p>
                           <span className="text-sm text-gray-500 dark:text-gray-400">
-                            {t("developers.maxStreak")} (
-                            {contributionStats.maxStreak} {t("developers.days")}
+                            {t('developers.maxStreak')} (
+                            {contributionStats.maxStreak} {t('developers.days')}
                             )
                           </span>
                         </div>
@@ -464,33 +470,33 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                             blockSize={12}
                             blockMargin={4}
                             fontSize={12}
-                            colorScheme={theme === "dark" ? "dark" : "light"}
+                            colorScheme={theme === 'dark' ? 'dark' : 'light'}
                             theme={{
                               light: [
-                                "#ebedf0",
-                                "#9be9a8",
-                                "#40c463",
-                                "#30a14e",
-                                "#216e39",
+                                '#ebedf0',
+                                '#9be9a8',
+                                '#40c463',
+                                '#30a14e',
+                                '#216e39',
                               ],
                               dark: [
-                                "#161b22",
-                                "#0e4429",
-                                "#006d32",
-                                "#26a641",
-                                "#39d353",
+                                '#161b22',
+                                '#0e4429',
+                                '#006d32',
+                                '#26a641',
+                                '#39d353',
                               ],
                             }}
                             style={{
-                              width: "100%",
-                              maxWidth: "100%",
-                              margin: "0 auto",
+                              width: '100%',
+                              maxWidth: '100%',
+                              margin: '0 auto',
                             }}
                           />
                         </div>
                         <div className="mt-2 flex justify-between text-xs text-gray-500 dark:text-gray-400 px-1">
-                          <span>{t("developers.less")}</span>
-                          <span>{t("developers.more")}</span>
+                          <span>{t('developers.less')}</span>
+                          <span>{t('developers.more')}</span>
                         </div>
                       </div>
                     </div>
