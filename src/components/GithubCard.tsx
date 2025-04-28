@@ -342,39 +342,43 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                                 }}
                               />
                               <Legend
-                                layout="vertical"
+                                layout="centric"
                                 align="right"
                                 verticalAlign="middle"
-                                iconSize={10}
-                                wrapperStyle={{
-                                  paddingLeft: '10px',
-                                  maxHeight: '280px',
-                                  overflowY: 'auto',
-                                }}
                                 formatter={(value: string, entry: any) => (
-                                  <span
-                                    className="text-sm text-gray-700 dark:text-gray-300 truncate"
-                                    title={`${value} (${entry.payload.percentage}%)`}
-                                  >
-                                    {value} ({entry.payload.percentage}
-                                    %)
+                                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                                    {value} ({entry.payload.percentage}%)
                                   </span>
                                 )}
                               />
                             </PieChart>
                           </ResponsiveContainer>
                         </div>
-                        {/*
                         <div className="mt-4 hidden sm:grid grid-cols-2 sm:grid-cols-3 gap-2">
                           {languagesWithPercentage.map((lang, index) => (
-                            <div key={lang.name} className="flex items-center gap-2 text-sm bg-white dark:bg-gray-800 rounded-lg p-2 border border-gray-200 dark:border-gray-700">
-                              <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
-                              <span className="text-gray-700 dark:text-gray-300 truncate" title={lang.name}>{lang.name}</span>
-                              <span className="text-gray-500 dark:text-gray-400 whitespace-nowrap ml-auto">({lang.percentage}%)</span>
+                            <div
+                              key={lang.name}
+                              className="flex items-center gap-2 text-sm bg-white dark:bg-gray-800 rounded-lg p-2 border border-gray-200 dark:border-gray-700"
+                            >
+                              <div
+                                className="w-3 h-3 rounded-full flex-shrink-0"
+                                style={{
+                                  backgroundColor:
+                                    COLORS[index % COLORS.length],
+                                }}
+                              />
+                              <span
+                                className="text-gray-700 dark:text-gray-300 truncate"
+                                title={lang.name}
+                              >
+                                {lang.name}
+                              </span>
+                              <span className="text-gray-500 dark:text-gray-400 whitespace-nowrap ml-auto">
+                                ({lang.percentage}%)
+                              </span>
                             </div>
                           ))}
                         </div>
-                        */}
                       </>
                     ) : (
                       <p className="text-gray-500 dark:text-gray-400 text-center py-10">
