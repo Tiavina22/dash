@@ -3,6 +3,7 @@ import axios from 'axios';
 import { graphql } from '@octokit/graphql';
 import { GitHubUser, LanguageData, RepoStats, ContributionStats } from '../types/github';
 
+
 // This hook fetches GitHub user data and calculates various statistics
 export const useGithub = () => {
   const [username, setUsername] = useState('');
@@ -278,6 +279,32 @@ export const useGithub = () => {
     }
   };
 
+  const fetchDevelopersInMadagascar = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      const headers: any = {};
+      if (githubToken) {
+        headers.Authorization = `token ${githubToken}`;
+      } else if (import.meta.env.VITE_GITHUB_TOKEN) {
+        headers.Authorization = `token ${import.meta.env.VITE_GITHUB_TOKEN}`;
+      }
+  
+      const response = await axios.get(
+        `https://api.github.com/search/users?q=location:Madagascar&per_page=100`,
+        { headers }
+      );
+  
+      return response.data.items; // Retourne juste les utilisateurs trouvés
+    } catch (err) {
+      console.error('Erreur lors de la récupération des développeurs de Madagascar:', err);
+      setError('Erreur lors de la récupération des développeurs de Madagascar');
+      return [];
+    } finally {
+      setLoading(false);
+    }
+  };  
+
   const fetchGitHubData = async () => {
     if (!username) return;
 
@@ -316,5 +343,6 @@ export const useGithub = () => {
     fetchGitHubData,
     githubToken,
     setGithubToken,
+    fetchDevelopersInMadagascar,
   };
 }; 

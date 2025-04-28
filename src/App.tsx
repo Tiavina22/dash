@@ -15,6 +15,8 @@ import { useGithub } from './hooks/useGithub';
 import LoadingScreen from './components/LoadingScreen';
 import LanguageSelector from './components/LanguageSelector';
 import { useTranslation } from 'react-i18next';
+import { MadagascarDevs } from './pages/MadagascarDevs';
+
 import './styles/language-selector.css';
 import ComparePage from './pages/ComparePage';
 
@@ -108,6 +110,7 @@ function App() {
               <Route path="/dashboard" element={<DashboardWithParams />} />
               <Route path="/compare" element={<ComparePage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="/madagascar-devs" element={<MadagascarDevs />} />
             </Routes>
           </main>
           <Footer />
