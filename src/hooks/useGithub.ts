@@ -2,10 +2,13 @@ import { useState } from 'react';
 import axios from 'axios';
 import { graphql } from '@octokit/graphql';
 import { GitHubUser, LanguageData, RepoStats, ContributionStats } from '../types/github';
+import { useTranslation } from 'react-i18next';
 
 
 // This hook fetches GitHub user data and calculates various statistics
 export const useGithub = () => {
+  const { t } = useTranslation();
+
   const [username, setUsername] = useState('');
   const [userData, setUserData] = useState<GitHubUser | null>(null);
   const [languages, setLanguages] = useState<LanguageData[]>([]);
@@ -31,15 +34,23 @@ export const useGithub = () => {
   const [error, setError] = useState('');
   const [githubToken, setGithubToken] = useState('');
 
+  const labelYears = (years: number) => {
+    return t((years > 1) ? 'common.years' : 'common.year').toLowerCase();
+  }
+
+  const labelMonths = (months: number) => {
+    return t((months > 1) ? 'common.months' : 'common.month').toLowerCase();
+  }
+
   const calculateAccountAge = (createdAt: string) => {
     const created = new Date(createdAt);
     const now = new Date();
     const years = now.getFullYear() - created.getFullYear();
     const months = now.getMonth() - created.getMonth();
     if (months < 0) {
-      return `${years - 1} ans ${12 + months} mois`;
+      return `${years - 1} ${labelYears(years - 1)} ${12 + months} ${labelMonths(12 + months)}`;
     }
-    return `${years} ans ${months} mois`;
+    return `${years} ${labelYears(years)} ${months} ${labelMonths(months)}`;
   };
 
   const calculateStreaks = (contributionDays: any[]) => {

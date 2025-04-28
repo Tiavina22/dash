@@ -25,7 +25,12 @@
     "githubProfile": "GitHub Profile",
     "linkedinProfile": "LinkedIn Profile",
     "supportMe": "Support me on",
-    "exportError": "Error exporting image"
+    "exportError": "Error exporting image",
+    "exportToPNG": "Export to PNG",
+    "year": "Year",
+    "years": "Years",
+    "month": "Month",
+    "months": "Months"
   },
   "developers": {
     "title": "Discover Malagasy Developers",
@@ -61,7 +66,11 @@
     "totalStars": "Total Stars",
     "totalContributions": "Total Contributions",
     "usedLanguages": "Used Languages",
-    "days": "days"
+    "days": "days",
+    "noBio": "No bio available",
+    "memberSince": "Member since",
+    "languages": "Languages",
+    "contributionSchedule": "Contribution Schedule"
   },
   "navigation": {
     "home": "Home",
