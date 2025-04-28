@@ -32,6 +32,7 @@
     "description": "Explore the contributions and projects of talented developers from Madagascar",
     "viewProfile": "View Profile",
     "shareProfile": "Share Profile",
+    "openGithubProfile": "Open the GitHub profile",
     "copied": "Link copied!",
     "copyError": "Error copying link",
     "repositories": "Repositories",
