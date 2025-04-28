@@ -61,7 +61,16 @@
     "totalStars": "Total des étoiles",
     "totalContributions": "Total des contributions",
     "usedLanguages": "Langages utilisés",
-    "days": "jours"
+    "days": "jours",
+    "memberSince": "Membre depuis",
+    "exportPng": "Export en PNG",
+    "noBio": "Aucune bio disponible",
+    "export": "Exporter la carte en image PNG",
+    "avatarAlt": "Avatar de {{name}}",
+    "totalForks": "forks",
+    "languagesUsed": "Langages Utilisés",
+    "noLanguages": "Aucune donnée de langage disponible",
+    "contributionCalendar": "Calendrier des Contributions"
   },
   "navigation": {
     "home": "Accueil",
@@ -181,4 +190,4 @@
     "githubTokenDescription": "Entrez votre token GitHub personnel pour accéder à vos statistiques privées. Ce token est stocké localement et n'est pas envoyé à nos serveurs.",
     "githubTokenPlaceholder": "ghp_..."
   }
-} 
+}
