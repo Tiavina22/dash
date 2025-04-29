@@ -37,6 +37,7 @@
     "description": "Explorez les contributions et les projets de développeurs talentueux de Madagascar",
     "viewProfile": "Voir le profil",
     "shareProfile": "Partager le profil",
+    "openGithubProfile": "Ouvrir le profil Github",
     "copied": "Lien copié !",
     "copyError": "Erreur lors de la copie du lien",
     "repositories": "Dépôts",
