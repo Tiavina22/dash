@@ -25,7 +25,12 @@
     "githubProfile": "Profil GitHub",
     "linkedinProfile": "Profil LinkedIn",
     "supportMe": "Supportez-moi sur",
-    "exportError": "Erreur lors de l'export de l'image"
+    "exportError": "Erreur lors de l'export de l'image",
+    "exportToPNG": "Exporter en PNG",
+    "year": "An",
+    "years": "Ans",
+    "month": "Mois",
+    "months": "Mois"
   },
   "developers": {
     "title": "Découvrez les dev Malagasy",
@@ -61,7 +66,11 @@
     "totalStars": "Total des étoiles",
     "totalContributions": "Total des contributions",
     "usedLanguages": "Langages utilisés",
-    "days": "jours"
+    "days": "jours",
+    "noBio": "Aucune biographie disponible",
+    "memberSince": "Membre depuis",
+    "languages": "Langages utilisés",
+    "contributionSchedule": "Calendrier des contributions"
   },
   "navigation": {
     "home": "Accueil",
@@ -157,7 +166,7 @@
     "loading": "Chargement des données...",
     "error": "Erreur lors du chargement des données",
     "noData": "Aucune donnée disponible",
-    "skills": "Skills & Achievements",
+    "skills": "Compétences & Réalisations",
     "stats": {
       "repositories": "Dépôts",
       "stars": "Étoiles",
