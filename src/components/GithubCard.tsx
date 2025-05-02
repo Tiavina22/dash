@@ -180,7 +180,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
 
               <div className="flex-1">
                 <div className="flex justify-between items-center mb-4">
-                  <div className="relative">
+                  <div className="relative cursor-pointer" onClick={openGithubPage} title={t('developers.openGithubProfile')}>
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 px-4 py-2 rounded-lg inline-block">
                       {userData.name || userData.login}
                     </h2>
