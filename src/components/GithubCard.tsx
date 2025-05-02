@@ -196,10 +196,10 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                     title={t('developers.exportPng')}
                   >
                     <Download className="w-5 h-5" />
-                    <span>Exporter en PNG</span>
+                    <span>{t('common.exportToPNG')}</span>
                   </button>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">{userData.bio || 'No bio available'}</p>
+                <p className="text-gray-600 dark:text-gray-400 mb-4">{userData.bio || t('developers.noBio')}</p>
                 <div className="mb-4">
                   <SkillBadges
                     languages={languages}
@@ -301,7 +301,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
-                    <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">Langages utilisés</h3>
+                    <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">{t('developers.languagesUsed')}</h3>
                     <div className="h-[200px] sm:h-[250px] md:h-[300px]">
                       <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
@@ -364,7 +364,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                   </div>
 
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
-                    <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">Contributions</h3>
+                    <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">{t('developers.contributions')}</h3>
                     <div className="space-y-4">
                       <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:scale-[1.02]">
                         <div className="flex items-center gap-2">
@@ -403,7 +403,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                       <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600 hover:border-yellow-500 dark:hover:border-yellow-400 transition-all duration-300 hover:scale-[1.02]">
                         <div className="flex items-center gap-2">
                           <GitCommit className="w-4 h-4 text-yellow-500 dark:text-yellow-400" />
-                          <span className="text-gray-700 dark:text-gray-300">Streak en cours</span>
+                          <span className="text-gray-700 dark:text-gray-300">{t('developers.currentStreak')}</span>
                         </div>
                         <div className="flex items-baseline gap-1 mt-1">
                           <p className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -420,7 +420,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                       <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600 hover:border-red-500 dark:hover:border-red-400 transition-all duration-300 hover:scale-[1.02]">
                         <div className="flex items-center gap-2">
                           <GitCommit className="w-4 h-4 text-red-500 dark:text-red-400" />
-                          <span className="text-gray-700 dark:text-gray-300">Streak maximum</span>
+                          <span className="text-gray-700 dark:text-gray-300">{t('developers.maxStreak')}</span>
                         </div>
                         <div className="flex items-baseline gap-1 mt-1">
                           <p className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -435,7 +435,7 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                       </div>
 
                       <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
-                        <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Calendrier des contributions</h4>
+                        <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('developers.contributionCalendar')}</h4>
                         <div className="overflow-x-auto">
                           <GitHubCalendar
                             username={userData.login}
