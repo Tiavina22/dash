@@ -68,10 +68,15 @@
     "totalContributions": "Total Contributions",
     "usedLanguages": "Used Languages",
     "days": "days",
-    "noBio": "No bio available",
     "memberSince": "Member since",
-    "languages": "Languages",
-    "contributionSchedule": "Contribution Schedule"
+    "exportPng": "Export as PNG",
+    "noBio": "No bio available",
+    "export": "Export card as PNG image",
+    "avatarAlt": "{{name}}'s avatar",
+    "totalForks": "forks",
+    "languagesUsed": "Languages Used",
+    "noLanguages": "No language data available",
+    "contributionCalendar": "Contribution Calendar"
   },
   "navigation": {
     "home": "Home",
@@ -191,4 +196,4 @@
     "githubTokenDescription": "Enter your personal GitHub token to access your private statistics. This token is stored locally and is not sent to our servers.",
     "githubTokenPlaceholder": "ghp_..."
   }
-} 
+}
