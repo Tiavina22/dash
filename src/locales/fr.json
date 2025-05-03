@@ -30,7 +30,57 @@
     "year": "An",
     "years": "Ans",
     "month": "Mois",
-    "months": "Mois"
+    "months": "Mois",
+    "weekdays": {
+      "full": {
+        "sunday": "Dimanche",
+        "monday": "Lundi",
+        "tuesday": "Mardi",
+        "wednesday": "Mercredi",
+        "thursday": "Jeudi",
+        "friday": "Vendredi",
+        "saturday": "Samedi"
+      },
+      "short": {
+        "sun": "Dim",
+        "mon": "Lun",
+        "tue": "Mar",
+        "wed": "Mer",
+        "thu": "Jeu",
+        "fri": "Ven",
+        "sat": "Sam"
+      }
+    },
+    "monthsOfYear": {
+      "full": {
+        "january": "Janvier",
+        "february": "Février",
+        "march": "Mars",
+        "april": "Avril",
+        "may": "Mai",
+        "june": "Juin",
+        "july": "Juillet",
+        "august": "Août",
+        "september": "Septembre",
+        "october": "Octobre",
+        "november": "Novembre",
+        "december": "Décembre"
+      },
+      "short": {
+        "jan": "Janv",
+        "feb": "Févr",
+        "mar": "Mars",
+        "apr": "Avr",
+        "may": "Mai",
+        "jun": "Juin",
+        "jul": "Juil",
+        "aug": "Août",
+        "sep": "Sept",
+        "oct": "Oct",
+        "nov": "Nov",
+        "dec": "Déc"
+      }
+    }
   },
   "developers": {
     "title": "Découvrez les dev Malagasy",

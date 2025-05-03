@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RepoStats, ContributionStats } from '../types/github';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -15,6 +15,19 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
   const { t } = useTranslation();
 
   const monthlyData = contributionStats.contributionsByMonth || [];
+
+  const monthlyDataForChart = useMemo(() => {
+    if (!contributionStats?.contributionsByMonth) return [];
+
+    return contributionStats.contributionsByMonth.map((item) => {
+      const translationKey = `common.monthsOfYear.full.${item.month}`;
+      return {
+        month: t(translationKey),
+        count: item.count,
+      };
+    });
+  }, [contributionStats?.contributionsByMonth, t]);
+
   const dailyData = Object.entries(contributionStats.contributionsByDay || {}).map(
     ([day, count]) => ({
       day,
@@ -94,7 +107,7 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
         </h3>
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={monthlyData}>
+            <BarChart data={monthlyDataForChart}>
               <XAxis
                 dataKey="month"
                 stroke="#6B7280"
@@ -166,7 +179,7 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
           </h3>
           <div className="text-center">
             <div className="text-2xl font-bold text-blue-500">
-              {contributionStats.mostProductiveDay?.day}
+              {t(`common.weekdays.full.${contributionStats.mostProductiveDay?.day}`)}
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400">
               {contributionStats.mostProductiveDay?.contributions} {t('developers.contributions')}
