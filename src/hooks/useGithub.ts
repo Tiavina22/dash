@@ -198,8 +198,12 @@ export const useGithub = () => {
 
       contributionDays.forEach((day: any) => {
         const date = new Date(day.date);
-        const dayKey = date.toLocaleDateString('fr-FR', { weekday: 'long' });
-        const monthKey = date.toLocaleDateString('fr-FR', { month: 'long' });
+        
+        // 'en' locale ensures consistency regardless of the user's system language.
+        // This resulting string is used as a key to look up the translation
+        // in the i18n JSON files (e.g., common.weekdays.full.monday, common.monthsOfYear.full.july).
+        const dayKey = date.toLocaleDateString('en', { weekday: 'long' }).toLocaleLowerCase();
+        const monthKey = date.toLocaleDateString('en', { month: 'long' }).toLocaleLowerCase();
         
         contributionsByDay[dayKey] = (contributionsByDay[dayKey] || 0) + day.contributionCount;
         contributionsByMonth[monthKey] = (contributionsByMonth[monthKey] || 0) + day.contributionCount;
