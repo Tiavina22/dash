@@ -1,7 +1,14 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RepoStats, ContributionStats } from '../types/github';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 
 interface DetailedStatsProps {
   repoStats: RepoStats;
@@ -28,12 +35,12 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
     });
   }, [contributionStats?.contributionsByMonth, t]);
 
-  const dailyData = Object.entries(contributionStats.contributionsByDay || {}).map(
-    ([day, count]) => ({
-      day,
-      contributions: count,
-    })
-  );
+  const dailyData = Object.entries(
+    contributionStats.contributionsByDay || {}
+  ).map(([day, count]) => ({
+    day,
+    contributions: count,
+  }));
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mt-6">
@@ -179,10 +186,15 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
           </h3>
           <div className="text-center">
             <div className="text-2xl font-bold text-blue-500">
-              {t(`common.weekdays.full.${contributionStats.mostProductiveDay?.day}`)}
+              {t(
+                `common.weekdays.full.${
+                  contributionStats.mostProductiveDay?.day || 'monday'
+                }`
+              )}
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400">
-              {contributionStats.mostProductiveDay?.contributions} {t('developers.contributions')}
+              {contributionStats.mostProductiveDay?.contributions}{' '}
+              {t('developers.contributions')}
             </div>
           </div>
         </div>
@@ -203,4 +215,4 @@ export const DetailedStats: React.FC<DetailedStatsProps> = ({
       </div>
     </div>
   );
-}; 
+};
