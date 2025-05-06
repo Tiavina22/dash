@@ -9,7 +9,7 @@ export const developers: Developer[] = [
   { username: 'Rohan29-AN', name: 'Tafita ANDONIAINA' },
   { username: 'RajaRakoto', name: 'Raja Rakotonirina' },
   { username: 'Tiavina22', name: 'Tiavina Ramilison' },
-  // { username: 'branGitfox', name: 'Brandon Fidelin Ravomanana' },
+  { username: 'JunnotDaniel13', name: 'Junnot Daniel' },
   { username: 'AmigosKazz', name: 'Kaznarah Andrinarivo' },
   { username: 'KiritoEM', name: 'Loick Emadison' },
   { username: 'tglRazaf', name: 'Stephano Razafindramena' },
