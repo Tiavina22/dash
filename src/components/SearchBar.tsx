@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { GitHubTokenInput } from './GitHubTokenInput';
+import { useTranslation } from "react-i18next";
 
 interface SearchBarProps {
   username: string;
@@ -31,6 +32,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   const initialRender = useRef(true);
   const [debouncedUsername, setDebouncedUsername] = useState(username);
   const timeoutRef = useRef<number>();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const urlUsername = searchParams.get('username');
@@ -98,7 +101,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
               {loading ? (
                 <div className="flex items-center">
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                  Chargement...
+                  {t('common.loading')}
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
