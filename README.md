@@ -89,5 +89,5 @@ For any questions or suggestions, feel free to open an issue on GitHub or contac
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by the GitDash Team</sub>
+  <sub>Built with ❤️ by the GitDash Team, Thanks</sub>
 </div> 
