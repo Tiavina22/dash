@@ -14,6 +14,7 @@ export const developers: Developer[] = [
   { username: 'KiritoEM', name: 'Loick Emadison' },
   { username: 'tglRazaf', name: 'Stephano Razafindramena' },
   { username: 'TohyNyAina', name: 'Tohy Ny Aina' },
+  { username: 'Miora1706', name: 'Miora RAOELIARIJAONA' },
   { username: 'HairanRins', name: 'H. Rino HairanRins' },
   { username: 'myhrindra194', name: 'Mirindra RANDRIAMBOLAMANJATO' },
   { username: 'JoseWald', name: 'JoseWald' },
@@ -54,4 +55,4 @@ export const developers: Developer[] = [
   { username: 'tiavina-mika', name: 'Tiavina Michael Ralainirina'},
   { username: 'AshCript', name: 'RAKOTONDRABE As Manjaka Josvah' },
   { username: 'faanrm', name: 'Faniloniaina Ramilison' },
-]; 
+  ]; 
