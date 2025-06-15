@@ -17,6 +17,7 @@ export const developers: Developer[] = [
   { username: 'HairanRins', name: 'H. Rino HairanRins' },
   { username: 'myhrindra194', name: 'Mirindra RANDRIAMBOLAMANJATO' },
   { username: 'JoseWald', name: 'JoseWald' },
+  { username: 'FunnyVazoniaina', name: 'Funny Vazoniaina'},
   { username: 'dimbi23', name: 'Dimbinirina Tefiniaina' },
   { username: 'rsjzoe', name: 'rsjzoe' },
   { username: 'mitia-Fi', name: 'Mitia Finiavana' },
