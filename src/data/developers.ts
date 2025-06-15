@@ -55,4 +55,5 @@ export const developers: Developer[] = [
   { username: 'tiavina-mika', name: 'Tiavina Michael Ralainirina'},
   { username: 'AshCript', name: 'RAKOTONDRABE As Manjaka Josvah' },
   { username: 'faanrm', name: 'Faniloniaina Ramilison' },
-]; 
+  { username: 'Miora1706', name: 'Miora RAOELIARIJAONA' },
+  ]; 
