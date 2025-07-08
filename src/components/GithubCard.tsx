@@ -463,12 +463,9 @@ export const GithubCard: React.FC<GithubCardProps> = ({
                               width: '100%',
                               maxWidth: '100%',
                               margin: '0 auto',
+                              color: theme === 'dark' ? '#D1D5DB' : '#374151',
                             }}
                           />
-                        </div>
-                        <div className="mt-2 flex justify-between text-xs text-gray-500 dark:text-gray-400 px-1">
-                          <span>{t('developers.less')}</span>
-                          <span>{t('developers.more')}</span>
                         </div>
                       </div>
                     </div>
