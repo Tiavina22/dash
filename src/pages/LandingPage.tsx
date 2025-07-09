@@ -17,7 +17,9 @@ export const LandingPage: React.FC = () => {
         return res.json();
       })
       .then(data => {
-        setContributors(data);
+        // Trier par nombre de contributions (décroissant)
+        const sorted = [...data].sort((a, b) => (b.contributions || 0) - (a.contributions || 0));
+        setContributors(sorted);
         setLoadingContrib(false);
       })
       .catch(e => {
@@ -45,6 +47,25 @@ export const LandingPage: React.FC = () => {
           {/* Liste des contributeurs */}
           <div className="flex flex-col items-center mb-10">
             <div className="font-semibold text-lg mb-2">{t('landing.contributors', 'Contributeurs')}</div>
+            {contributors.length > 0 && (
+              <div className="mb-4">
+                <span className="text-sm text-gray-500 dark:text-gray-400">Top contributor :</span>
+                <a
+                  href={contributors[0].html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center ml-2 group"
+                  title={contributors[0].login}
+                >
+                  <img
+                    src={contributors[0].avatar_url}
+                    alt={contributors[0].login}
+                    className="w-10 h-10 rounded-full border-2 border-yellow-400 group-hover:border-blue-500 transition"
+                  />
+                  <span className="ml-2 font-bold text-yellow-600 dark:text-yellow-400 group-hover:text-blue-500">{contributors[0].login}</span>
+                </a>
+              </div>
+            )}
             {loadingContrib && <div className="text-gray-500">Loading...</div>}
             {errorContrib && <div className="text-red-500">{errorContrib}</div>}
             <div className="flex flex-wrap justify-center gap-4">
