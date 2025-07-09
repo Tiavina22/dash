@@ -94,26 +94,28 @@ function App() {
     }
   };
 
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <ThemeProvider>
       <Router>
         <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
           <Header />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/hero" element={<Hero />} />
-              <Route path="/dashboard" element={<DashboardWithParams />} />
-              <Route path="/compare" element={<ComparePage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-              <Route path="/madagascar-devs" element={<MadagascarDevs />} />
-            </Routes>
-          </main>
-          <Footer />
+          {isLoading ? (
+            <LoadingScreen />
+          ) : (
+            <>
+              <main className="flex-grow">
+                <Routes>
+                  <Route path="/" element={<LandingPage />} />
+                  <Route path="/hero" element={<Hero />} />
+                  <Route path="/dashboard" element={<DashboardWithParams />} />
+                  <Route path="/compare" element={<ComparePage />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                  <Route path="/madagascar-devs" element={<MadagascarDevs />} />
+                </Routes>
+              </main>
+              <Footer />
+            </>
+          )}
         </div>
       </Router>
     </ThemeProvider>

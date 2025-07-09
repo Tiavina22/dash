@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon, Github } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
@@ -6,11 +6,28 @@ import { PayPalButton } from './PayPalButton';
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from './LanguageSelector';
 
+
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(min-width: 768px)').matches : false
+  );
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    const handleResize = () => setIsDesktop(mediaQuery.matches);
+    mediaQuery.addEventListener('change', handleResize);
+    handleResize();
+    return () => mediaQuery.removeEventListener('change', handleResize);
+  }, []);
+
+  // Fermer le menu mobile si on passe en desktop
+  useEffect(() => {
+    if (isDesktop && isMenuOpen) setIsMenuOpen(false);
+  }, [isDesktop, isMenuOpen]);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -25,7 +42,10 @@ export const Header: React.FC = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav
+            className="items-center space-x-8"
+            style={{ display: isDesktop ? 'flex' : 'none' }}
+          >
             <Link
               to="/"
               className={`text-sm font-medium transition-colors duration-200 ${
@@ -96,44 +116,67 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              <Link
-                to="/"
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  isActive('/')
-                    ? 'bg-blue-50 text-blue-700 dark:bg-blue-900 dark:text-blue-200'
-                    : 'text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700'
-                }`}
+        {isMenuOpen && !isDesktop && (
+          <>
+            {/* Overlay */}
+            <div
+              className="fixed inset-0 bg-black bg-opacity-40 z-40"
+              onClick={() => setIsMenuOpen(false)}
+            />
+            {/* Drawer */}
+            <div
+              className="fixed top-0 right-0 w-64 h-full bg-white dark:bg-gray-800 shadow-lg z-50 flex flex-col p-6 transition-transform duration-300"
+            >
+              <button
+                className="self-end mb-6 p-2 text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                onClick={() => setIsMenuOpen(false)}
+                aria-label="Fermer le menu"
               >
-                {t('navigation.home')}
-              </Link>
-              <Link
-                to="/hero"
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  isActive('/hero')
-                    ? 'bg-blue-50 text-blue-700 dark:bg-blue-900 dark:text-blue-200'
-                    : 'text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700'
-                }`}
-              >
-                {t('developers.title')}
-              </Link>
-              <Link
-                to="/dashboard"
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  isActive('/dashboard')
-                    ? 'bg-blue-50 text-blue-700 dark:bg-blue-900 dark:text-blue-200'
-                    : 'text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700'
-                }`}
-              >
-                {t('navigation.dashboard')}
-              </Link>
-              <div className="px-3 py-2">
-                <LanguageSelector />
-              </div>
+                <X className="h-6 w-6" />
+              </button>
+              <nav className="flex flex-col space-y-4">
+                <Link
+                  to="/"
+                  className={`text-base font-medium px-2 py-2 rounded transition-colors duration-200 ${
+                    isActive('/')
+                      ? 'bg-blue-50 text-blue-700 dark:bg-blue-900 dark:text-blue-200'
+                      : 'text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t('navigation.home')}
+                </Link>
+                <Link
+                  to="/hero"
+                  className={`text-base font-medium px-2 py-2 rounded transition-colors duration-200 ${
+                    isActive('/hero')
+                      ? 'bg-blue-50 text-blue-700 dark:bg-blue-900 dark:text-blue-200'
+                      : 'text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t('developers.title')}
+                </Link>
+                <Link
+                  to="/dashboard"
+                  className={`text-base font-medium px-2 py-2 rounded transition-colors duration-200 ${
+                    isActive('/dashboard')
+                      ? 'bg-blue-50 text-blue-700 dark:bg-blue-900 dark:text-blue-200'
+                      : 'text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t('navigation.dashboard')}
+                </Link>
+                <div className="pt-2">
+                  <LanguageSelector />
+                </div>
+                <div className="pt-4">
+                  <PayPalButton />
+                </div>
+              </nav>
             </div>
-          </div>
+          </>
         )}
       </div>
     </header>
